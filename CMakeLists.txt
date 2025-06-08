@@ -14,7 +14,7 @@ find_package(SFML 2.5 COMPONENTS graphics window system audio REQUIRED)
 add_executable(oop2_ex05 
     src/main.cpp
     src/Controller.cpp
-)
+ "include/GameBoard.h" "src/GameBoard.cpp")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)

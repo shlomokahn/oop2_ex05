@@ -1,9 +1,10 @@
+#include "GameBoard.h"
 
-
-class Controller {
+class Controller : public GameBoard
+{
     public:
         Controller();
         ~Controller(){};
 
         void run();
-};
+}; 
