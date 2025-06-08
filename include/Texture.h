@@ -11,13 +11,13 @@ public:
     sf::Texture& getTexture(const std::string& name);
 
 private:
-    Texture() = default;
+    Texture() {init();};
     ~Texture() = default;
     Texture(const Texture&) = delete;
     Texture& operator=(const Texture&) = delete;
 
     std::unordered_map<std::string, sf::Texture> m_textures;
-    std::vector<std::string> m_textureNames = {"car", "police"};
+    std::vector<std::string> m_textureNames = {"car"};
 
-    bool m_initialized = false;
+   // bool m_initialized = false;
 };

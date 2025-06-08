@@ -4,7 +4,7 @@
 
 //===============================
 GameBoard::GameBoard()
-    : m_object("resources/car.png", sf::Vector2f(500, 500))
+    : m_object("car", sf::Vector2f(500, 500))
 {
 }
 //===============================

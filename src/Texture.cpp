@@ -7,24 +7,23 @@ Texture& Texture::getInstance() {
     return instance;
 }
 
-void Texture::init() 
+void Texture::init()
 {
-    if (m_initialized) return;
 
-    for (int i = 0; i < m_textureNames.size(); i++) 
+    for (int i = 0; i < m_textureNames.size(); i++)
     {
         sf::Texture texture;
         std::string path = "resources/" + m_textureNames[i] + ".png";
-		texture.loadFromFile(path);
+        texture.loadFromFile(path);
 
-		m_textures[m_textureNames[i]] = std::move(texture);
+        m_textures[m_textureNames[i]] =  std::move(texture);
     }
-    m_initialized = true;
 }
 
-sf::Texture& Texture::getTexture(const std::string& name) {
+sf::Texture& Texture::getTexture(const std::string& name)
+{
     auto it = m_textures.find(name);
-    if (it == m_textures.end())
-        throw std::runtime_error("Texture not found: " + name);
+    //if (it == m_textures.end())
+        //throw std::runtime_error("Texture not found: " + name);
     return it->second;
 }
