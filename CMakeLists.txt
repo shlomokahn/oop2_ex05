@@ -18,7 +18,8 @@ add_executable(oop2_ex05
 "include/Object.h" "src/Object.cpp"
 "include/Texture.h" "src/Texture.cpp"
 "include/Car.h" "src/Car.cpp" "include/Io.h"
-"include/SrartWindow.h" "src/SrartWindow.cpp")
+"include/SrartWindow.h" "src/SrartWindow.cpp"
+"include/PrintText.h" "src/PrintText.cpp" )
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)
