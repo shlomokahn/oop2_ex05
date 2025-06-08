@@ -9,4 +9,6 @@ class Controller : public GameBoard
         void run();
     private:
         void fillObjects();
+        void actionObjects();
+        sf::Clock m_clock;
 };

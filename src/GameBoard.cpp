@@ -13,9 +13,7 @@ GameBoard::~GameBoard()
 //===============================
 void GameBoard::runBoard()
 {	
-	m_window.clear(sf::Color(100, 180, 80));
     drawBoard();
-    drawObjects();
 }
 //===============================
 void GameBoard::openWindow(const sf::Vector2u size)
@@ -47,8 +45,9 @@ void GameBoard::drawObjects()
 //===============================
 void GameBoard::drawBoard()
 {
+    m_window.clear(sf::Color(100, 180, 80));
 	drawRoad(1400, 300);
-
+    drawObjects();
 }
 //===============================
 void GameBoard::drawRoad(int roadWidthBottom, int roadWidthTop) {
