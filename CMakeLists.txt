@@ -23,6 +23,8 @@ add_executable(oop2_ex05
 "include/Object.h" "src/Object.cpp"
 "include/Texture.h" "src/Texture.cpp"
 "include/Car.h" "src/Car.cpp" "include/Io.h"
+"include/SrartWindow.h" "src/SrartWindow.cpp"
+"include/PrintText.h" "src/PrintText.cpp" )
 "include/SrartWindow.h" "src/SrartWindow.cpp" 
 "include/SmartCar.h" "src/SmartCar.cpp" 
 "include/Player.h" "src/Player.cpp")

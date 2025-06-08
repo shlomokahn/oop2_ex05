@@ -5,10 +5,8 @@ int main() {
     StartWindow startWindow;
     startWindow.run();
 
-    if (!startWindow.isOpen()) {
-        Controller controller;
-        controller.run();
-    }
+    Controller controller;
+    controller.run();
 
     return 0;
 } 
