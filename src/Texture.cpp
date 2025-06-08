@@ -23,7 +23,5 @@ void Texture::init()
 sf::Texture& Texture::getTexture(const std::string& name)
 {
     auto it = m_textures.find(name);
-    //if (it == m_textures.end())
-        //throw std::runtime_error("Texture not found: " + name);
     return it->second;
 }

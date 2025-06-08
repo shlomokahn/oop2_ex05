@@ -7,4 +7,6 @@ class Controller : public GameBoard
         ~Controller(){};
 
         void run();
-}; 
+    private:
+        void fillObjects();
+};

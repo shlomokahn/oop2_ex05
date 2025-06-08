@@ -4,7 +4,6 @@
 
 //===============================
 GameBoard::GameBoard()
-    : m_object("car", sf::Vector2f(500, 500))
 {
 }
 //===============================
@@ -16,6 +15,7 @@ void GameBoard::runBoard()
 {	
 	m_window.clear(sf::Color(100, 180, 80));
     drawBoard();
+    drawObjects();
 }
 //===============================
 void GameBoard::openWindow(const sf::Vector2u size)
@@ -35,15 +35,20 @@ bool GameBoard::isOpen()
 			return false;
 		}
 	}
-	m_object.draw(m_window);
 	m_window.display();
 	return true;
-	
+}
+//===============================
+void GameBoard::drawObjects()
+{
+    for(auto& object : m_objects) 
+        object->draw(m_window);
 }
 //===============================
 void GameBoard::drawBoard()
 {
 	drawRoad(1400, 300);
+
 }
 //===============================
 void GameBoard::drawRoad(int roadWidthBottom, int roadWidthTop) {

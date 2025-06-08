@@ -10,6 +10,11 @@ set(SFML_DIR "C:/SFML/SFML-2.6.1/lib/cmake/SFML")
 # Find SFML
 find_package(SFML 2.5 COMPONENTS graphics window system audio REQUIRED)
 
+# Enable Edit and Continue for MSVC (Debug mode)
+if(MSVC)
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI")
+endif()
+
 # Add source files
 add_executable(oop2_ex05 
     src/main.cpp
@@ -18,7 +23,9 @@ add_executable(oop2_ex05
 "include/Object.h" "src/Object.cpp"
 "include/Texture.h" "src/Texture.cpp"
 "include/Car.h" "src/Car.cpp" "include/Io.h"
-"include/SrartWindow.h" "src/SrartWindow.cpp")
+"include/SrartWindow.h" "src/SrartWindow.cpp" 
+"include/SmartCar.h" "src/SmartCar.cpp" 
+"include/Player.h" "src/Player.cpp")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)
