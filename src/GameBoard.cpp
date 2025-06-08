@@ -77,7 +77,7 @@ void GameBoard::drawRoad(int roadWidthBottom, int roadWidthTop) {
     }
 
     // ציור שני קווים עקומים (שוליים פנימיים) ל-4 נתיבים
-    int numCurvePoints = 500; // כמה נקודות בכל קו
+    int numCurvePoints = 2; // כמה נקודות בכל קו
     for (int lane = 1; lane <= 2; ++lane) {
         sf::VertexArray curve(sf::LineStrip, numCurvePoints);
         for (int i = 0; i < numCurvePoints; ++i) {
