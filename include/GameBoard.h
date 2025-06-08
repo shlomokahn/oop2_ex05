@@ -1,4 +1,7 @@
+#pragma once
 #include <SFML/Graphics.hpp>
+#include "Object.h"
+
 class GameBoard
 {
 public:
@@ -11,7 +14,9 @@ protected:
 	bool isOpen();
 	
 private:
+
 	void drawBoard();
 	void drawRoad(int roadWidthBottom, int roadWidthTop);
 	sf::RenderWindow m_window;
+	Object m_object;
 };

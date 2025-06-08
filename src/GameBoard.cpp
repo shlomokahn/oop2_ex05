@@ -1,8 +1,10 @@
+#pragma once
 #include "GameBoard.h"
 
 
 //===============================
 GameBoard::GameBoard()
+    : m_object("resources/car.png", sf::Vector2f(40, 40))
 {
 }
 //===============================
@@ -33,6 +35,7 @@ bool GameBoard::isOpen()
 			return false;
 		}
 	}
+	m_object.draw(m_window);
 	m_window.display();
 	return true;
 	

@@ -14,7 +14,8 @@ find_package(SFML 2.5 COMPONENTS graphics window system audio REQUIRED)
 add_executable(oop2_ex05 
     src/main.cpp
     src/Controller.cpp
- "include/GameBoard.h" "src/GameBoard.cpp")
+ "include/GameBoard.h" "src/GameBoard.cpp"
+"include/Object.h" "src/Object.cpp" "include/Texture.h" "src/Texture.cpp")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)
@@ -36,4 +37,5 @@ endif()
 # Copy resources to build directory (images, sounds, etc.)
 if(EXISTS "${CMAKE_SOURCE_DIR}/resources")
     file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
+    message(STATUS "Resources directory copied to build directory")
 endif() 
