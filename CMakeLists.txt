@@ -15,7 +15,9 @@ add_executable(oop2_ex05
     src/main.cpp
     src/Controller.cpp
  "include/GameBoard.h" "src/GameBoard.cpp"
-"include/Object.h" "src/Object.cpp" "include/Texture.h" "src/Texture.cpp")
+"include/Object.h" "src/Object.cpp"
+"include/Texture.h" "src/Texture.cpp"
+"include/Car.h" "src/Car.cpp" "include/Io.h")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)

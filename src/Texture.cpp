@@ -1,6 +1,6 @@
 #pragma once
 #include "Texture.h"
-
+#include "Io.h"
 Texture::Texture(std::string name, sf::Vector2f pos)
 {
 	m_texture.loadFromFile(name);
