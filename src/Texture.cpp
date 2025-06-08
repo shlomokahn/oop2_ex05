@@ -1,11 +1,30 @@
-#pragma once
 #include "Texture.h"
-#include "Io.h"
-Texture::Texture(std::string name, sf::Vector2f pos)
-{
-	m_texture.loadFromFile(name);
-	m_sprite.setTexture(m_texture);
-	m_sprite.setOrigin(m_texture.getSize().x / 2, m_texture.getSize().y / 2);
-	m_sprite.setPosition(pos);
+#include <stdexcept>
+#include <iostream>
+
+Texture& Texture::getInstance() {
+    static Texture instance;
+    return instance;
 }
-//===============================================
+
+void Texture::init() 
+{
+    if (m_initialized) return;
+
+    for (int i = 0; i < m_textureNames.size(); i++) 
+    {
+        sf::Texture texture;
+        std::string path = "resources/" + m_textureNames[i] + ".png";
+		texture.loadFromFile(path);
+
+		m_textures[m_textureNames[i]] = std::move(texture);
+    }
+    m_initialized = true;
+}
+
+sf::Texture& Texture::getTexture(const std::string& name) {
+    auto it = m_textures.find(name);
+    if (it == m_textures.end())
+        throw std::runtime_error("Texture not found: " + name);
+    return it->second;
+}
