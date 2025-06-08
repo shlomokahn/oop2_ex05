@@ -1,0 +1,15 @@
+Game Instructions:
+
+1. Use the arrow keys to control your car
+2. Avoid obstacles on the road
+3. Collect points by driving safely
+4. The game ends when you crash
+
+Controls:
+- Up Arrow: Accelerate
+- Down Arrow: Brake
+- Left Arrow: Move Left
+- Right Arrow: Move Right
+- ESC: Pause Game
+
+Good luck and have fun! 
