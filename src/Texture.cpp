@@ -6,7 +6,7 @@ Texture& Texture::getInstance() {
     static Texture instance;
     return instance;
 }
-
+//=======================================
 void Texture::init()
 {
 
@@ -19,7 +19,7 @@ void Texture::init()
         m_textures[m_textureNames[i]] =  std::move(texture);
     }
 }
-
+//=======================================
 sf::Texture& Texture::getTexture(const std::string& name)
 {
     auto it = m_textures.find(name);

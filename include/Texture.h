@@ -19,5 +19,4 @@ private:
     std::unordered_map<std::string, sf::Texture> m_textures;
     std::vector<std::string> m_textureNames = {"back", "car"};
 
-   // bool m_initialized = false;
 };
