@@ -2,17 +2,18 @@
 //#include <SFML/Graphics.hpp>
 //#include <string>
 #include "PrintText.h"
+#include "Texture.h"
 
 class StartWindow {
 public:
     StartWindow();
     ~StartWindow() = default;
 
-    void run();
+    bool run();
 
 private:
     void createButtons();
-    void handleEvents();
+    bool handleEvents();
     void draw();
     void showHelp();
     sf::RectangleShape createButton(const sf::Vector2f& size, const sf::Vector2f& position);

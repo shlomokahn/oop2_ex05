@@ -3,8 +3,8 @@
 
 int main() {
     StartWindow startWindow;
-    startWindow.run();
-
+	if (!startWindow.run())
+		return 0; 
     Controller controller;
     controller.run();
 

@@ -27,16 +27,19 @@ void StartWindow::createButtons() {
 
     // Help background
     m_helpBackground = createButton({ 600, 400 }, { 100, 100 });
-    m_helpBackground.setFillColor(sf::Color(30, 30, 30, 230));
+    m_helpBackground.setFillColor(sf::Color::Black);
 }
 //===========================================
-void StartWindow::handleEvents() 
+bool StartWindow::handleEvents() 
 {
     sf::Event event;
     while (m_window.pollEvent(event)) 
     {
         if (event.type == sf::Event::Closed)
+        {
             m_window.close();
+			return false;
+        }
 
         else if (event.type == sf::Event::MouseButtonPressed) 
         {
@@ -55,6 +58,7 @@ void StartWindow::handleEvents()
             }
         }
     }
+    return true;
 }
 //===========================================
 void StartWindow::showHelp() 
@@ -68,11 +72,32 @@ void StartWindow::showHelp()
         helpContent += line + '\n';
 
     helpFile.close();
-    PrintText::getInstance().drawText(m_window, helpContent, 20, sf::Color::White, sf::Vector2f(120, 120));
+    PrintText::getInstance().drawText(m_window, helpContent, 20, sf::Color::White, m_helpBackground);
+	m_window.display();
+	// Wait for user to close the help window
+	bool helpOpen = true;
+	while (helpOpen)
+	{
+		sf::Event event;
+		while (m_window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				m_window.close();
+				helpOpen = false;
+			}
+			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+			{
+				helpOpen = false; // Close help on mouse click
+			}
+		}
+	}
 }
 //============================================
 void StartWindow::draw() {
-    m_window.clear(sf::Color(100, 100, 100));
+    m_window.clear();
+	sf::Sprite background(Texture::getInstance().getTexture("back"));
+    m_window.draw(background);
 
     m_window.draw(m_playButtonRect);
     PrintText::getInstance().drawText(m_window, "Play", 30, sf::Color::White, m_playButtonRect);
@@ -82,14 +107,16 @@ void StartWindow::draw() {
     m_window.display();
 }
 //============================================
-void StartWindow::run() 
+bool StartWindow::run() 
 {
     m_window.create(sf::VideoMode(800, 600), "Game Start Menu");
     m_window.setFramerateLimit(60);
 
     while (m_window.isOpen()) 
     {
-        handleEvents();
+		if (!handleEvents())
+			return false;
         draw();
     }
+	return true;
 }
