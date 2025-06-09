@@ -2,8 +2,8 @@
 class Enemy
 {
 public:
-	Enemy();
-	~Enemy();
+	Enemy() {};
+	Enemy::~Enemy() = default;
 
 private:
 

@@ -8,7 +8,7 @@ class Controller : public GameBoard
 
         void run();
     private:
-        void fillObjects();
+        void fillObjects(const float time);
         void actionObjects();
         sf::Clock m_clock;
 };
