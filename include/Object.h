@@ -1,19 +1,25 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-#include "Texture.h"
+#pragma once  
+#include <SFML/Graphics.hpp>  
+#include "Texture.h"  
 
-class Object
-{
-public:
-	Object(std::string name, sf::Vector2f pos);
+class Object  
+{  
+public:  
+   Object(std::string name, sf::Vector2f pos);  
 
-	virtual void action(const float time);
+   virtual void action(const float time);  
+   virtual void collision(Object& other) {};  
+   virtual void collided(Object& other) {};  
 
-	void draw(sf::RenderWindow& window);
-	void setRect(const sf::Vector2f location);
-	~Object() {};
-protected:
-	void setSise(const float scale);
-private:
-	sf::Sprite m_sprite;
+   void draw(sf::RenderWindow& window);  
+   void setRect(const sf::Vector2f location);  
+   ~Object() {};  
+
+   const sf::Sprite& getSprite() const { return m_sprite; }  
+
+protected:  
+   void setSise(const float scale);  
+   sf::Sprite m_sprite;  
+
+private:  
 };
