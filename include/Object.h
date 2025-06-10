@@ -12,7 +12,7 @@ public:
    virtual void collided(Object& other) {};  
 
    void draw(sf::RenderWindow& window);  
-   void setRect(const sf::Vector2f location);  
+   void setRect(const float rotation);
    ~Object() {};  
 
    const sf::Sprite& getSprite() const { return m_sprite; }  

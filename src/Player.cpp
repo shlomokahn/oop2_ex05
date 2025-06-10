@@ -9,12 +9,12 @@ Player::Player(sf::Vector2f pos)
 void Player::action(const float time)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		setRect(sf::Vector2f(2, 5));
+		setRect(-10.f);
 		m_sprite.move(-m_speed * time, 0);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 		m_sprite.move(m_speed * time, 0);
-		setRect(sf::Vector2f(2, 2));
+		setRect(10.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		m_sprite.move(0, 0);
@@ -25,7 +25,6 @@ void Player::action(const float time)
 	else
 	{
 		m_sprite.move(0, 0);
-		setRect(sf::Vector2f(2, 4));
 	}
 }
 //===========================================

@@ -41,7 +41,7 @@ endif()
 
 # Copy SFML DLLs to build directory
 if(WIN32)
-    file(GLOB SFML_DLLS "C:/SFML/SFML-2.6.1/bin/*.dll")
+    file(GLOB SFML_DLLS "C:/SFML/SFML-2.6.1/bin/*.dll") 
     file(COPY ${SFML_DLLS} DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
