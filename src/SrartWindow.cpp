@@ -96,7 +96,14 @@ void StartWindow::showHelp()
 //============================================
 void StartWindow::draw() {
     m_window.clear();
-	sf::Sprite background(Texture::getInstance().getTexture("back"));
+    sf::Sprite background(Texture::getInstance().getTexture("back"));
+    sf::Vector2f targetSize((float)m_window.getSize().x, (float)m_window.getSize().y);
+    sf::Vector2u textureSize = background.getTexture()->getSize();
+
+    float scaleX = targetSize.x / textureSize.x;
+    float scaleY = targetSize.y / textureSize.y;
+
+    background.setScale(scaleX, scaleY);
     m_window.draw(background);
 
     m_window.draw(m_playButtonRect);
