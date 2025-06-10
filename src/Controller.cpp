@@ -27,8 +27,8 @@ void Controller::fillObjects(const float time)
 	if (timer > 2)
 	{
 		timer = 0.f;
-		int path = getWindowSize().x / 2 - (getWindowSize().x / 20 * 2) + ((rand() % 4)) * getWindowSize().x/20;
-		m_objects.push_back(std::make_unique<EnemyCar>(path, rand() % 20 + 100));
+		int leftRoad = (getWindowSize().x - m_roadWidth)/2;
+		m_objects.push_back(std::make_unique<EnemyCar>(leftRoad + (rand() % m_numLanes) * (m_roadWidth/ m_numLanes), rand() % 100 + 20));
 	}
 }
 //================================

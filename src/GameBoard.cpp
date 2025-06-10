@@ -46,67 +46,30 @@ void GameBoard::drawObjects()
 void GameBoard::drawBoard()
 {
     m_window.clear(sf::Color(100, 180, 80));
-	drawRoad(1400, 300);
+    drawSixLaneRoad();
     drawObjects();
 }
 //===============================
-void GameBoard::drawRoad(int roadWidthBottom, int roadWidthTop) {
+void GameBoard::drawSixLaneRoad()
+{
     int winWidth = m_window.getSize().x;
     int winHeight = m_window.getSize().y;
 
-    // ציור המשולש (הכביש)
-    sf::ConvexShape road;
-    road.setPointCount(4);
-    road.setPoint(0, sf::Vector2f((winWidth - roadWidthTop) / 2, 0)); // למעלה שמאל
-    road.setPoint(1, sf::Vector2f((winWidth + roadWidthTop) / 2, 0)); // למעלה ימין
-    road.setPoint(2, sf::Vector2f((winWidth + roadWidthBottom) / 2, winHeight)); // למטה ימין
-    road.setPoint(3, sf::Vector2f((winWidth - roadWidthBottom) / 2, winHeight)); // למטה שמאל
-    road.setFillColor(sf::Color(30, 30, 30)); // שחור-אפור
-
+    // ׳¦׳™׳•׳¨ ׳”׳›׳‘׳™׳© (׳׳׳‘׳ ׳™׳©׳¨)
+    int roadWidth = m_roadWidth; // ׳׳™׳ ׳₪׳¨׳¡׳₪׳§׳˜׳™׳‘׳”
+    int roadLeft = (winWidth - roadWidth) / 2;
+    sf::RectangleShape road(sf::Vector2f(roadWidth, winHeight));
+    road.setPosition(roadLeft, 0);
+    road.setFillColor(sf::Color(30, 30, 30));
     m_window.draw(road);
 
-    // ציור קווים לבנים (קו מקווקו במרכז)
-    int numLines = 12;
-    for (int i = 0; i < numLines; ++i) {
-        float t1 = float(i) / numLines;
-        float t2 = float(i + 0.5f) / numLines;
-
-        float y1 = t1 * winHeight;
-        float y2 = t2 * winHeight;
-
-        float xCenter = winWidth / 2;
-
-        sf::RectangleShape line(sf::Vector2f(6, y2 - y1));
-        line.setFillColor(sf::Color::White);
-        line.setOrigin(3, 0);
-        line.setPosition(xCenter, y1);
+    for (int lane = 0; lane < m_numLanes + 1; ++lane) {
+        float x = roadLeft + (roadWidth * lane) / (m_numLanes);
+        sf::RectangleShape line(sf::Vector2f(4, winHeight));
+        line.setPosition(x - 2, 0); // ׳׳¨׳›׳– ׳”׳§׳•
+        line.setFillColor((lane == 0 || lane == 6)?sf::Color::Yellow : sf::Color::White);
         m_window.draw(line);
     }
-
-    // ציור שני קווים עקומים (שוליים פנימיים) ל-4 נתיבים
-    int numCurvePoints = 2; // כמה נקודות בכל קו
-    for (int lane = 1; lane <= 2; ++lane) {
-        sf::VertexArray curve(sf::LineStrip, numCurvePoints);
-        for (int i = 0; i < numCurvePoints; ++i) {
-            float t = float(i) / (numCurvePoints - 1);
-            float y = t * winHeight;
-            float roadWidthAtY = roadWidthTop + (roadWidthBottom - roadWidthTop) * t;
-            float x = (winWidth - roadWidthAtY) / 2 + (roadWidthAtY / 4) * lane;
-            curve[i].position = sf::Vector2f(x, y);
-            curve[i].color = sf::Color::White;
-        }
-        m_window.draw(curve);
-
-        // קו סימטרי בצד השני
-        sf::VertexArray curve2(sf::LineStrip, numCurvePoints);
-        for (int i = 0; i < numCurvePoints; ++i) {
-            float t = float(i) / (numCurvePoints - 1);
-            float y = t * winHeight;
-            float roadWidthAtY = roadWidthTop + (roadWidthBottom - roadWidthTop) * t;
-            float x = (winWidth + roadWidthAtY) / 2 - (roadWidthAtY / 4) * lane;
-            curve2[i].position = sf::Vector2f(x, y);
-            curve2[i].color = sf::Color::White;
-        }
-        m_window.draw(curve2);
-    }
 }
+//===============================
+
