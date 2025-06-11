@@ -9,14 +9,15 @@ Player::Player(sf::Vector2f pos)
 void Player::action(const float time)
 {
 	m_toMove.x = 0;
+	static float countRect = 0;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		setRect(-10.f);
-		m_toMove.x = m_toMove.y;
+		setRect(countRect -= time*5);
+		m_toMove.x = -countRect * 30;
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		m_toMove.x = -m_toMove.y;
-		setRect(10.f);
+		setRect(countRect += time*5);
+		m_toMove.x = -countRect * 30;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) 
 	{
