@@ -15,7 +15,6 @@ public:
    void setRect(const float rotation);
    ~Object() {};  
    sf::FloatRect getGlobal() const { return m_sprite.getGlobalBounds(); }
-   //const sf::Sprite& getSprite() const { return m_sprite; }  
 
 protected:  
    void setSise(const float scale);  

@@ -3,7 +3,7 @@
 Player::Player(sf::Vector2f pos)
 	:SmartCar("car", pos)
 {
-	m_toMove.y = 100;
+	m_toMove.y = 30;
 }
 //===========================================
 void Player::action(const float time)
@@ -32,10 +32,10 @@ void Player::action(const float time)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && m_toMove.y > 30) {
 		static float countTimeDOWN = 0;
 		countTimeDOWN += time;
-		if (countTimeDOWN > 0.001)
+		if (countTimeDOWN > 0.01)
 		{
-			countTimeDOWN -= 0.001f;
-			m_toMove.y--;
+			countTimeDOWN -= 0.01f;
+			m_toMove.y-=3;
 		}
 	}
 	else if(m_toMove.y > 30)
@@ -53,11 +53,6 @@ void Player::action(const float time)
 //===========================================
 void Player::collision(Object& other)
 {
-	//if (other.getSprite().getGlobalBounds().intersects(m_sprite.getGlobalBounds())) {
-	//	// Handle collision logic here
-	//	// For example, you can stop the player or change its position
-	//	m_sprite.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y - 10); // Move up slightly on collision
-	//}
 }
 //===========================================
 void Player::collided(Object& other)
