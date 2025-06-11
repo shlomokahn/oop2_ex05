@@ -1,3 +1,4 @@
+#pragma once
 #include "Car.h"
 
 class SmartCar : public Car 

@@ -1,33 +1,24 @@
 #pragma once
 #include "SrartWindow.h"
 #include <fstream>
+#include "Controller.h"
+#include "Help.h"
 
 StartWindow::StartWindow() 
 {
     createButtons();
 }
 //===========================================
-sf::RectangleShape StartWindow::createButton(const sf::Vector2f& size, const sf::Vector2f& position) 
+void StartWindow::createButtons() 
 {
-    sf::RectangleShape button;
-    button.setSize(size);
-    button.setPosition(position);
-    button.setFillColor(sf::Color(50, 50, 50));
-    button.setOutlineThickness(2);
-    button.setOutlineColor(sf::Color::White);
-    return button;
-}
-//===========================================
-void StartWindow::createButtons() {
-    // Play button
-    m_playButtonRect = createButton({ 200, 50 }, { 300, 200 });
+	menu.add(m_window, "Play", std::make_unique<Controller>(), { 200, 50 }, { 300, 200 });
+	menu.add(m_window, "Help", std::make_unique<Help>(), { 200, 50 }, { 300, 300 });
 
-    // Help button
-    m_helpButtonRect = createButton({ 200, 50 }, { 300, 300 });
+
 
     // Help background
-    m_helpBackground = createButton({ 600, 400 }, { 100, 100 });
-    m_helpBackground.setFillColor(sf::Color::Black);
+ //   m_helpBackground = createButton({ 600, 400 }, { 100, 100 });
+ //   m_helpBackground.setFillColor(sf::Color::Black);
 }
 //===========================================
 bool StartWindow::handleEvents() 
@@ -41,58 +32,50 @@ bool StartWindow::handleEvents()
 			return false;
         }
 
-        else if (event.type == sf::Event::MouseButtonPressed) 
+        else if (event.type == sf::Event::MouseButtonPressed)
         {
-            if (event.mouseButton.button == sf::Mouse::Left) 
-            {
-                sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
-
-                if (m_playButtonRect.getGlobalBounds().contains(mousePos.x, mousePos.y)) 
-                {
-                    m_window.close();
-                }
-                else if (m_helpButtonRect.getGlobalBounds().contains(mousePos.x, mousePos.y)) 
-                {
-                        showHelp();
-                }
-            }
+            if (event.mouseButton.button == sf::Mouse::Left)
+			{
+				sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
+				menu.maneger(m_window, mousePos);
+			}
         }
     }
     return true;
 }
-//===========================================
-void StartWindow::showHelp() 
-{
-    m_window.draw(m_helpBackground);
-    std::ifstream helpFile("resources/help.txt");
-    std::string line;
-    std::string helpContent;
-
-    while (std::getline(helpFile, line)) 
-        helpContent += line + '\n';
-
-    helpFile.close();
-    PrintText::getInstance().drawText(m_window, helpContent, 20, sf::Color::White, m_helpBackground);
-	m_window.display();
-	// Wait for user to close the help window
-	bool helpOpen = true;
-	while (helpOpen)
-	{
-		sf::Event event;
-		while (m_window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				m_window.close();
-				helpOpen = false;
-			}
-			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-			{
-				helpOpen = false; // Close help on mouse click
-			}
-		}
-	}
-}
+////===========================================
+//void StartWindow::showHelp() 
+//{
+//    //m_window.draw(m_helpBackground);
+//    std::ifstream helpFile("resources/help.txt");
+//    std::string line;
+//    std::string helpContent;
+//
+//    while (std::getline(helpFile, line)) 
+//        helpContent += line + '\n';
+//
+//    helpFile.close();
+//    //PrintText::getInstance().drawText(m_window, helpContent, 20, sf::Color::White, m_helpBackground);
+//	m_window.display();
+//	// Wait for user to close the help window
+//	bool helpOpen = true;
+//	while (helpOpen)
+//	{
+//		sf::Event event;
+//		while (m_window.pollEvent(event))
+//		{
+//			if (event.type == sf::Event::Closed)
+//			{
+//				m_window.close();
+//				helpOpen = false;
+//			}
+//			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+//			{
+//				helpOpen = false; // Close help on mouse click
+//			}
+//		}
+//	}
+//}
 //============================================
 void StartWindow::draw() {
     m_window.clear();
@@ -105,12 +88,7 @@ void StartWindow::draw() {
 
     background.setScale(scaleX, scaleY);
     m_window.draw(background);
-
-    m_window.draw(m_playButtonRect);
-    PrintText::getInstance().drawText(m_window, "Play", 30, sf::Color::White, m_playButtonRect);
-    m_window.draw(m_helpButtonRect);
-    PrintText::getInstance().drawText(m_window, "Help", 30, sf::Color::White, m_helpButtonRect);
-
+	menu.draw(m_window);
     m_window.display();
 }
 //============================================

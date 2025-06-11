@@ -1,10 +1,12 @@
 #pragma once
 //#include <SFML/Graphics.hpp>
 //#include <string>
-#include "PrintText.h"
+//#include "PrintText.h"
 #include "Texture.h"
+#include "Menu.h"
 
-class StartWindow {
+class StartWindow 
+{
 public:
     StartWindow();
     ~StartWindow() = default;
@@ -15,12 +17,8 @@ private:
     void createButtons();
     bool handleEvents();
     void draw();
-    void showHelp();
-    sf::RectangleShape createButton(const sf::Vector2f& size, const sf::Vector2f& position);
+   // void showHelp();
 
-
-    sf::RenderWindow m_window;
-    sf::RectangleShape m_playButtonRect;
-    sf::RectangleShape m_helpButtonRect;
-    sf::RectangleShape m_helpBackground;
+	sf::RenderWindow m_window;
+    Menu menu;
 };

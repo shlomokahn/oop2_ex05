@@ -1,3 +1,4 @@
+#pragma once
 #include "PrintText.h"
 #include <iostream>
 

@@ -26,7 +26,7 @@ add_executable(oop2_ex05
 "include/SrartWindow.h" "src/SrartWindow.cpp"
 "include/PrintText.h" "src/PrintText.cpp" 
 "include/SmartCar.h" "src/SmartCar.cpp" 
-"include/Player.h" "src/Player.cpp" "include/Enemy.h" "src/Enemy.cpp" "include/EnemyCar.h" "src/EnemyCar.cpp")
+"include/Player.h" "src/Player.cpp" "include/Enemy.h" "src/Enemy.cpp" "include/EnemyCar.h" "src/EnemyCar.cpp" "include/Menu.h" "src/Menu.cpp" "include/Command.h" "include/Help.h" "include/Botton.h" "src/Botton.cpp" "src/Help.cpp")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)
