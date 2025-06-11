@@ -20,6 +20,8 @@ private:
 	void drawObjects();
 	void drawBoard();
 	void drawSixLaneRoad();
+	void drawSixLaneRoadLine(const int location);
+	
 	
 	sf::RenderWindow m_window;
 };

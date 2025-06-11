@@ -8,5 +8,5 @@ Car::Car(std::string name,sf::Vector2f pos)
 //===============================
 void Car::action(const float time)
 {
-	Object::action(time * m_speed);
+	Object::action(-time);
 }

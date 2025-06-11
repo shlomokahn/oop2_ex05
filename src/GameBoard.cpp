@@ -52,22 +52,25 @@ void GameBoard::drawBoard()
 //===============================
 void GameBoard::drawSixLaneRoad()
 {
-    int winWidth = m_window.getSize().x;
-    int winHeight = m_window.getSize().y;
-
-    // ציור הכביש (מלבן ישר)
-    int roadWidth = m_roadWidth; // אין פרספקטיבה
-    int roadLeft = (winWidth - roadWidth) / 2;
-    sf::RectangleShape road(sf::Vector2f(roadWidth, winHeight));
-    road.setPosition(roadLeft, 0);
+    for (int i = 0; i < 50; i++)
+    {
+        drawSixLaneRoadLine(m_window.getSize().y - (i + 1) * 200);
+    }
+}
+//===============================
+void GameBoard::drawSixLaneRoadLine(const int location)
+{
+    sf::RectangleShape road(sf::Vector2f(m_roadWidth, 200));
+	road.setPosition((m_window.getSize().x - m_roadWidth) / 2, location);
     road.setFillColor(sf::Color(30, 30, 30));
     m_window.draw(road);
 
-    for (int lane = 0; lane < m_numLanes + 1; ++lane) {
-        float x = roadLeft + (roadWidth * lane) / (m_numLanes);
-        sf::RectangleShape line(sf::Vector2f(4, winHeight));
-        line.setPosition(x - 2, 0); // מרכז הקו
-        line.setFillColor((lane == 0 || lane == 6)?sf::Color::Yellow : sf::Color::White);
+    for (int lane = 0; lane < m_numLanes + 1; ++lane)
+    {
+        sf::RectangleShape line(sf::Vector2f(10, road.getSize().y/2));
+        float x = road.getPosition().x + (m_roadWidth * lane) / (m_numLanes) - line.getSize().x/2;
+        line.setPosition(x, road.getPosition().y + line.getSize().y / 2);
+        line.setFillColor((lane == 0 || lane == 6) ? sf::Color::Yellow : sf::Color::White);
         m_window.draw(line);
     }
 }

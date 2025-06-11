@@ -32,5 +32,6 @@ void Object::setSise(const float scale)
 //===============================================
 void Object::action(const float time)
 {
-	m_sprite.move(0, time);
+	m_sprite.move(m_toMove.x * time, m_toMove.y * time);
+	auto i = m_sprite.getGlobalBounds();
 }

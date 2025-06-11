@@ -8,7 +8,7 @@ public:
 	~Car()= default;
 	virtual void action(const float time);
 protected:
-	int m_speed = 0;
+	//int m_speed = 0;
 
 private:
 };
