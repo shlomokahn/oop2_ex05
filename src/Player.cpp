@@ -9,47 +9,23 @@ Player::Player(sf::Vector2f pos)
 //===========================================
 void Player::action(const float time)
 {
-	m_toMove.x = 0;
-	static float countRect = 0;
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		setRect(countRect -= time*5);
-		m_toMove.x = -countRect * 30;
-		
+		m_countRect -= time * 3;	
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		setRect(countRect += time*5);
-		m_toMove.x = -countRect * 30;
+		m_countRect += time * 3;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) 
-	{
-		static float countTimeUP = 0;
-		countTimeUP += time;
-		if(countTimeUP > 0.01)
-		{
-			countTimeUP -= 0.01f;
-			m_toMove.y++;
-		}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		m_toMove.y += time * 50;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && m_toMove.y > 30) {
-		static float countTimeDOWN = 0;
-		countTimeDOWN += time;
-		if (countTimeDOWN > 0.01)
-		{
-			countTimeDOWN -= 0.01f;
-			m_toMove.y-=3;
-		}
+		m_toMove.y-= time * 200;
 	}
-	else if(m_toMove.y > 30)
-	{
-		static float countTime = 0;
-		countTime += time;
-		if (countTime > 0.03)
-		{
-			countTime -= 0.03f;
-			m_toMove.y--;
-		}
+	else if(m_toMove.y > 30){
+		m_toMove.y -= time * 100;
 	}
-	Car::action(time);
+	SmartCar::action(time);
 }
 //===========================================
 void Player::collision(Object& other)
