@@ -20,5 +20,15 @@ void Road::draw(sf::RenderWindow& window)
 		roadLine.draw(window);
 	}
 }
+//===============================
+void Road::promoteRoad()
+{
+
+	sf::Vector2f newPosition = m_roadLines[(m_toPromote-1) % m_roadLines.size()].getPositionLine();
+	newPosition.y -= m_roadLines[m_toPromote % m_roadLines.size()].getRoadWidth();
+
+	m_roadLines[m_toPromote % m_roadLines.size()].setPositionLine(newPosition);
+	m_toPromote++;
+}
 
 

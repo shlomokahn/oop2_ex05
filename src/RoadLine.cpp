@@ -32,6 +32,11 @@ sf::Vector2f RoadLine::getPositionLine()const
 	return m_roadLine.getPosition();
 }
 //==========================
+float RoadLine::getRoadWidth() const
+{
+	return m_roadLine.getSize().y;
+}
+//==========================
 void RoadLine::draw(sf::RenderWindow& window) const
 {
 	window.draw(m_roadLine);

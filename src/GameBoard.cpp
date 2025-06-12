@@ -14,6 +14,18 @@ GameBoard::~GameBoard()
 void GameBoard::runBoard()
 {	
     drawBoard();
+
+	static float lastViewCenter = m_window.getView().getCenter().y;
+
+	float currentCenter = m_window.getView().getCenter().y;
+
+	if( std::abs(currentCenter - lastViewCenter) > m_roadWidth/m_numLanes)
+	{
+		static int count = 0;
+		count++;
+		m_road.promoteRoad();
+		lastViewCenter = currentCenter;
+	}
 }
 //===============================
 void GameBoard::openWindow(const sf::Vector2u size)
