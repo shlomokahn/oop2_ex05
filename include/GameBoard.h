@@ -14,7 +14,7 @@ protected:
 	bool isOpen();
 	sf::Vector2u getWindowSize() const {return m_window.getSize(); }
 	std::vector<std::unique_ptr<Object>> m_objects;
-	int m_roadWidth = 1000;
+	int m_roadWidth = 1600;
 	int m_numLanes = 6;
 private:
 	void drawObjects();

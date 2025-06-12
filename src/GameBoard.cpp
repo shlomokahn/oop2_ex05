@@ -52,15 +52,15 @@ void GameBoard::drawBoard()
 //===============================
 void GameBoard::drawSixLaneRoad()
 {
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 10; i++)
     {
-        drawSixLaneRoadLine(m_window.getSize().y - (i + 1) * 200);
+        drawSixLaneRoadLine(m_window.getSize().y - (i + 1) * m_roadWidth/m_numLanes);
     }
 }
 //===============================
 void GameBoard::drawSixLaneRoadLine(const int location)
 {
-    sf::RectangleShape road(sf::Vector2f(m_roadWidth, 200));
+    sf::RectangleShape road(sf::Vector2f(m_roadWidth, m_roadWidth / m_numLanes+1));
 	road.setPosition((m_window.getSize().x - m_roadWidth) / 2, location);
     road.setFillColor(sf::Color(30, 30, 30));
     m_window.draw(road);
