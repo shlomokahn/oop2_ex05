@@ -11,10 +11,10 @@ void Player::action(const float time)
 {
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		m_countRect -= time * 3;	
+		m_countRect -= time * 5;	
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		m_countRect += time * 3;
+		m_countRect += time * 5;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		m_toMove.y += time * 50;
