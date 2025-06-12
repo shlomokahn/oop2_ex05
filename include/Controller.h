@@ -8,9 +8,9 @@ class Controller : public GameBoard,  public Command
         Controller();
         ~Controller(){};
 
-		void execute() override { run(); }
-        void run();
+		void execute(sf::RenderWindow& window) override { run(window); }
     private:
+        void run(sf::RenderWindow& window);
         void fillObjects(const float time);
         void actionObjects();
         sf::Clock m_clock;

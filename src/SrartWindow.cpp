@@ -3,6 +3,8 @@
 #include <fstream>
 #include "Controller.h"
 #include "Help.h"
+#include "Exit.h"
+#include "UserSettings.h"
 
 StartWindow::StartWindow() 
 {
@@ -11,14 +13,10 @@ StartWindow::StartWindow()
 //===========================================
 void StartWindow::createButtons() 
 {
-	menu.add(m_window, "Play", std::make_unique<Controller>(), { 200, 50 }, { 300, 200 });
-	menu.add(m_window, "Help", std::make_unique<Help>(), { 200, 50 }, { 300, 300 });
-
-
-
-    // Help background
- //   m_helpBackground = createButton({ 600, 400 }, { 100, 100 });
- //   m_helpBackground.setFillColor(sf::Color::Black);
+	menu.add(m_window, "Play", std::make_unique<Controller>(), { 200, 50 }, { 300, 150 });
+	menu.add(m_window, "Settings", std::make_unique<UserSettings>(), { 200, 50 }, { 300, 250 });
+	menu.add(m_window, "Help", std::make_unique<Help>(), { 200, 50 }, { 300, 350 });
+	menu.add(m_window, "Exit", std::make_unique<Exit>(), { 200, 50 }, { 300, 450 });
 }
 //===========================================
 bool StartWindow::handleEvents() 
@@ -43,41 +41,9 @@ bool StartWindow::handleEvents()
     }
     return true;
 }
-////===========================================
-//void StartWindow::showHelp() 
-//{
-//    //m_window.draw(m_helpBackground);
-//    std::ifstream helpFile("resources/help.txt");
-//    std::string line;
-//    std::string helpContent;
-//
-//    while (std::getline(helpFile, line)) 
-//        helpContent += line + '\n';
-//
-//    helpFile.close();
-//    //PrintText::getInstance().drawText(m_window, helpContent, 20, sf::Color::White, m_helpBackground);
-//	m_window.display();
-//	// Wait for user to close the help window
-//	bool helpOpen = true;
-//	while (helpOpen)
-//	{
-//		sf::Event event;
-//		while (m_window.pollEvent(event))
-//		{
-//			if (event.type == sf::Event::Closed)
-//			{
-//				m_window.close();
-//				helpOpen = false;
-//			}
-//			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-//			{
-//				helpOpen = false; // Close help on mouse click
-//			}
-//		}
-//	}
-//}
 //============================================
-void StartWindow::draw() {
+void StartWindow::draw() 
+{
     m_window.clear();
     sf::Sprite background(Texture::getInstance().getTexture("back"));
     sf::Vector2f targetSize((float)m_window.getSize().x, (float)m_window.getSize().y);
