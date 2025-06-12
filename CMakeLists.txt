@@ -16,9 +16,9 @@ if(MSVC)
 endif()
 
 # Add source files
-add_executable(oop2_ex05 
-    src/main.cpp
-    src/Controller.cpp
+add_executable( "oop2_ex05" 
+    "src/main.cpp"
+  "src/Controller.cpp"
  "include/GameBoard.h" "src/GameBoard.cpp"
 "include/Object.h" "src/Object.cpp"
 "include/Texture.h" "src/Texture.cpp"
@@ -27,7 +27,8 @@ add_executable(oop2_ex05
 "include/SrartWindow.h" "src/SrartWindow.cpp"
 "include/PrintText.h" "src/PrintText.cpp" 
 "include/SmartCar.h" "src/SmartCar.cpp" 
-"include/Player.h" "src/Player.cpp" "include/Enemy.h" "src/Enemy.cpp" "include/EnemyCar.h" "src/EnemyCar.cpp" "include/Menu.h" "src/Menu.cpp" "include/Command.h" "include/Help.h" "include/Botton.h" "src/Botton.cpp" "src/Help.cpp" "include/Exit.h"  "include/UserSettings.h")
+"include/Exit.h" 
+"include/UserSettings.h"
 "include/Player.h" "src/Player.cpp" 
 "include/Enemy.h" "src/Enemy.cpp" 
 "include/EnemyCar.h" "src/EnemyCar.cpp" 
@@ -35,7 +36,8 @@ add_executable(oop2_ex05
 "include/Command.h"  
 "include/Botton.h" "src/Botton.cpp" 
 "include/Help.h" "src/Help.cpp" 
-"include/Road.h" "src/Road.cpp" "include/RoadLine.h" "src/RoadLine.cpp")
+"include/Road.h" "src/Road.cpp" 
+"include/RoadLine.h" "src/RoadLine.cpp")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)
