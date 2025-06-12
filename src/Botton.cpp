@@ -14,5 +14,5 @@ Botton::Botton(sf::RenderWindow& window, const std::string& name, const sf::Vect
 void Botton::draw(sf::RenderWindow& window)
 {
 	window.draw(m_buttonRect);
-	PrintText::getInstance().drawText(window, m_name, 20, sf::Color::White, m_buttonRect.getPosition() + sf::Vector2f(10, 10));
+	PrintText::getInstance().drawText(window, m_name, 30, sf::Color::White, m_buttonRect );
 }

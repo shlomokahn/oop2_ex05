@@ -4,12 +4,11 @@
 #include <Io.h>
 #include <EnemyCar.h>
 
-
 Controller::Controller() 
 {
 }
 //===============================================
-void Controller::run() 
+void Controller::run(sf::RenderWindow& window)
 {
 	openWindow(sf::Vector2u(1600,1000));
 

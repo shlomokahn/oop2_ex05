@@ -27,6 +27,7 @@ add_executable(oop2_ex05
 "include/SrartWindow.h" "src/SrartWindow.cpp"
 "include/PrintText.h" "src/PrintText.cpp" 
 "include/SmartCar.h" "src/SmartCar.cpp" 
+"include/Player.h" "src/Player.cpp" "include/Enemy.h" "src/Enemy.cpp" "include/EnemyCar.h" "src/EnemyCar.cpp" "include/Menu.h" "src/Menu.cpp" "include/Command.h" "include/Help.h" "include/Botton.h" "src/Botton.cpp" "src/Help.cpp" "include/Exit.h"  "include/UserSettings.h")
 "include/Player.h" "src/Player.cpp" 
 "include/Enemy.h" "src/Enemy.cpp" 
 "include/EnemyCar.h" "src/EnemyCar.cpp" 

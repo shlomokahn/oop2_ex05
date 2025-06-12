@@ -5,8 +5,8 @@ class Help : public Command
 public:
 	Help() = default ;
 	~Help() = default;
-	void execute() { showHelp(); }
+	void execute(sf::RenderWindow& window) { showHelp(window); }
 
 private:
-	void showHelp() const;
+	void showHelp(sf::RenderWindow& window) const;
 };
