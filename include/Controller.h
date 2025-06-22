@@ -13,5 +13,6 @@ class Controller : public GameBoard,  public Command
         void run(sf::RenderWindow& window);
         void fillObjects(const float time);
         void actionObjects();
+		void collisionObjects();
         sf::Clock m_clock;
 };

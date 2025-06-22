@@ -10,7 +10,7 @@ RoadLine::RoadLine(const int roadWidth, const int numLanes)
 	sf::RectangleShape separation(sf::Vector2f(10, m_roadLine.getSize().y / 2));
 	for (int i = 0; i < m_numLanes + 1; i++)
 	{
-		separation.setFillColor((i == 0 || i == 6) ? sf::Color::Yellow : sf::Color::White);
+		separation.setFillColor((i == 0 || i == m_numLanes) ? sf::Color::Yellow : sf::Color::White);
 		m_separationLines.push_back(separation);
 	}
 }
@@ -20,7 +20,7 @@ void RoadLine::setPositionLine(const sf::Vector2f& position)
 	m_roadLine.setPosition(position);
 	for (int i = 0; i < m_separationLines.size(); i++)
 	{
-		float x = m_roadLine.getPosition().x + (m_roadWidth * i) / (m_numLanes);
+		float x = m_roadLine.getPosition().x + (m_roadWidth * i) / (m_numLanes) - 5;
 		float y = m_roadLine.getPosition().y + m_roadLine.getSize().y / 2;
 		m_separationLines[i].setPosition(x, y);
 	}
