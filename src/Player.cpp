@@ -28,14 +28,10 @@ void Player::action(const float time)
 	SmartCar::action(time);
 }
 //===========================================
-void Player::collision(Object& other)
+void Player::collision(Object* other)
 {
-	if (this->getGlobal().intersects(other.getGlobal()))
-		other.collided(*this);
-}
-//===========================================
-void Player::collided(Object& other)
-{
+	if (this->getGlobal().intersects(other->getGlobal()))
+		other->collided(this);
 }
 //===========================================
 void Player::draw(sf::RenderWindow& window)

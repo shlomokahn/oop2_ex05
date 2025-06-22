@@ -8,7 +8,7 @@ class EnemyCar : public Enemy, public Car
 public:
 	EnemyCar(const int path,const int speed);
 	~EnemyCar() = default;
-	void collided(Player& player) override { player.collided(*this); }
+	void collided(Player* player) override;
 
 private:
 

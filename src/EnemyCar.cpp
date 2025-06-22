@@ -7,3 +7,8 @@ EnemyCar::EnemyCar(const int path, const int speed)
 {
 	m_toMove.y = speed;
 }
+//==============================
+void EnemyCar::collided(Player* player)
+{
+	player->collided(this);
+}

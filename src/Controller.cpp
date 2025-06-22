@@ -49,5 +49,5 @@ void Controller::collisionObjects()
 	for(int i = 0; i < m_objects.size();i++)
 		for (int j = 0; j < m_objects.size(); j++)
 			if(i != j)
-				m_objects[i]->collision(*m_objects[j]);
+				m_objects[i]->collision(m_objects[j].get());
 }

@@ -4,7 +4,7 @@
 
 
 class Player;
-class EnemeCar;
+class EnemyCar;
 
 class Object  
 {  
@@ -12,10 +12,10 @@ public:
    Object(std::string name, sf::Vector2f pos);  
 
    virtual void action(const float time);  
-   virtual void collision(Object& other) {};  
-   virtual void collided(Object& other) {}; 
-   virtual void collided(Player& player) {}
-   virtual void collided(EnemeCar& enemeCar) {}
+   virtual void collision(Object* other) {};  
+   virtual void collided(Object* other) {}; 
+   virtual void collided(Player* player) {}
+   virtual void collided(EnemyCar* enemyCar) {}
    virtual void draw(sf::RenderWindow& window);
 
    void setRect(const float rotation);
