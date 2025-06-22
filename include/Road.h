@@ -12,5 +12,5 @@ public:
 
 private:
 	std::vector<RoadLine> m_roadLines;
-	int m_toPromote;
+	int m_toPromote = 9;
 };

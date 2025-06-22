@@ -15,16 +15,14 @@ void GameBoard::runBoard()
 {	
     drawBoard();
 
-	static float lastViewCenter = m_window.getView().getCenter().y;
+	static float lastViewCenter = m_window.getView().getCenter().y - (m_roadWidth / m_numLanes);
 
 	float currentCenter = m_window.getView().getCenter().y;
 
-	if( std::abs(currentCenter - lastViewCenter) > m_roadWidth/m_numLanes)
+	while(std::abs(currentCenter - lastViewCenter) > m_roadWidth / m_numLanes)
 	{
-		static int count = 0;
-		count++;
 		m_road.promoteRoad();
-		lastViewCenter = currentCenter;
+		lastViewCenter -= m_roadWidth / m_numLanes;
 	}
 }
 //===============================
