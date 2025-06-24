@@ -18,6 +18,8 @@ public:
    virtual void collided(EnemyCar* enemyCar) {}
    virtual void draw(sf::RenderWindow& window);
 
+
+   void moveBackToRoad(bool left);
    void setRect(const float rotation);
 
    ~Object() {};  
@@ -28,5 +30,6 @@ protected:
    sf::Vector2f m_toMove = { 0,0 };
 
 private:  
+	float m_time = 0;
    sf::Sprite m_sprite;  
 };

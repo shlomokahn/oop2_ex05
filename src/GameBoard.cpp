@@ -14,6 +14,7 @@ GameBoard::~GameBoard()
 void GameBoard::runBoard()
 {	
     drawBoard();
+	checkInRoad();
 
 	static float lastViewCenter = m_window.getView().getCenter().y - (m_roadWidth / m_numLanes);
 
@@ -50,6 +51,13 @@ bool GameBoard::isOpen()
 void GameBoard::fillroad()
 {
 	m_road.gameStart(m_window.getSize(), m_roadWidth, m_numLanes);
+}
+//=========================
+void GameBoard::checkInRoad()
+{
+	for (auto& object : m_objects)
+		m_road.inRoad(object.get());
+
 }
 //===============================
 void GameBoard::drawObjects()

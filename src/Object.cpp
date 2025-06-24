@@ -17,6 +17,11 @@ void Object::draw(sf::RenderWindow& window)
 	window.draw(m_sprite);
 }
 //===============================================
+void Object::moveBackToRoad(bool left)
+{
+	Object::action(-m_time);
+}
+//===============================================
 void Object::setRect(const float rotation)
 {
 	m_sprite.setOrigin(SIZE_CAR.x / 2, SIZE_CAR.y / 2);
@@ -31,6 +36,7 @@ void Object::setSise(const float scale)
 //===============================================
 void Object::action(const float time)
 {
+	m_time = time;
 	m_sprite.move(m_toMove.x * time * KMH, m_toMove.y * time * KMH);
-	auto i = m_sprite.getGlobalBounds();
+	//auto i = m_sprite.getGlobalBounds();
 }

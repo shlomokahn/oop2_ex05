@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "RoadLine.h"
 
+class Object;
+
 class Road
 {
 public:
@@ -9,6 +11,8 @@ public:
 	void gameStart(sf::Vector2u sizeWindow,const int roadWidth, const int numLanes);
 	void draw(sf::RenderWindow& window);
 	void promoteRoad();
+
+	void inRoad(Object* object);
 
 private:
 	std::vector<RoadLine> m_roadLines;

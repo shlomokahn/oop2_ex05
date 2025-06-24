@@ -9,7 +9,7 @@ public:
 
 	void setPositionLine(const sf::Vector2f& position);
 	sf::Vector2f getPositionLine() const;
-	float getRoadWidth() const;
+	sf::Vector2f getRoadSize() const;
 
 	void draw(sf::RenderWindow& window) const ;
 

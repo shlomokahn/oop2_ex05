@@ -15,7 +15,7 @@ protected:
 	bool isOpen();
 	sf::Vector2u getWindowSize() const {return m_window.getSize(); }
 	void fillroad();
-
+	void checkInRoad();
 	std::vector<std::unique_ptr<Object>> m_objects;
 	int m_roadWidth = 1000;
 	int m_numLanes = 6;
