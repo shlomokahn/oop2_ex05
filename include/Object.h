@@ -26,7 +26,6 @@ public:
 protected:  
    void setSise(const float scale);  
    sf::Vector2f m_toMove = { 0,0 };
-   bool m_isDead = false;
 
 private:  
    sf::Sprite m_sprite;  

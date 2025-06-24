@@ -8,7 +8,7 @@ void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int num
 	for (int i = 0; i < 10; i++)
 	{
         m_roadLines.push_back(RoadLine(roadWidth, numLanes));
-		int rowLocation = sizeWindow.y - roadWidth / numLanes * (i + 1);
+		int rowLocation = sizeWindow.y - roadWidth / numLanes * i;
 		m_roadLines[i].setPositionLine( sf::Vector2f(left, rowLocation) );
 	}
 }

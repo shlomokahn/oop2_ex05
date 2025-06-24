@@ -1,9 +1,12 @@
 #pragma once
 #include "Player.h"
 
+bool Player::m_isDead = false;
+
 Player::Player(sf::Vector2f pos)
 	:SmartCar("car", pos)
 {
+	m_isDead = false;
 	m_toMove.y = 30;
 }
 //===========================================
