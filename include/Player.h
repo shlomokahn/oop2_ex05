@@ -6,7 +6,7 @@ class Player : public SmartCar
 {
 public:
 	Player(sf::Vector2f pos);
-	void action(const float time)override;
+	void move(const float deltaTime)override;
 	void collision(Object* other) override;
 	void collided(EnemyCar* enemyCar)override { m_isDead = true;}
 	void draw(sf::RenderWindow& window)override;

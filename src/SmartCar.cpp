@@ -6,12 +6,12 @@ SmartCar::SmartCar(std::string name, sf::Vector2f pos)
 {
 }
 //===============================
-void SmartCar::action(const float time)
+void SmartCar::move(const float deltaTime)
 {
-	straighten(time);
+	straighten(deltaTime);
 	setRect(m_countRect);
 	m_toMove.x = -m_countRect * m_toMove.y / 3;
-	Car::action(time);
+	Car::move(deltaTime);
 }
 //===============================
 void SmartCar::straighten(const float time)

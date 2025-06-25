@@ -55,14 +55,14 @@ void GameBoard::fillroad()
 //=========================
 void GameBoard::checkInRoad()
 {
-	for (auto& object : m_objects)
+	for (auto& object : m_objectsMove)
 		m_road.inRoad(object.get());
 
 }
 //===============================
 void GameBoard::drawObjects()
 {
-    for(auto& object : m_objects) 
+    for(auto& object : m_objectsMove)
         object->draw(m_window);
 }
 //===============================

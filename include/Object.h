@@ -10,26 +10,18 @@ class Object
 {  
 public:  
    Object(std::string name, sf::Vector2f pos);  
-
-   virtual void action(const float time);  
+ 
    virtual void collision(Object* other) {};  
    virtual void collided(Object* other) {}; 
    virtual void collided(Player* player) {}
    virtual void collided(EnemyCar* enemyCar) {}
    virtual void draw(sf::RenderWindow& window);
 
-
-   void moveBackToRoad(bool left);
-   void setRect(const float rotation);
-
    ~Object() {};  
    sf::FloatRect getGlobal() const { return m_sprite.getGlobalBounds(); }
 
 protected:  
-   void setSise(const float scale);  
-   sf::Vector2f m_toMove = { 0,0 };
+   sf::Sprite m_sprite;  
 
 private:  
-	float m_time = 0;
-   sf::Sprite m_sprite;  
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Object.h"
+#include "ObjectMove.h"
 #include <Road.h>
 
 class GameBoard
@@ -16,7 +16,7 @@ protected:
 	sf::Vector2u getWindowSize() const {return m_window.getSize(); }
 	void fillroad();
 	void checkInRoad();
-	std::vector<std::unique_ptr<Object>> m_objects;
+	std::vector<std::unique_ptr<ObjectMove>> m_objectsMove;
 	int m_roadWidth = 1000;
 	int m_numLanes = 6;
 	

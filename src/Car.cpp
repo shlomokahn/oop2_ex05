@@ -2,11 +2,11 @@
 #include "Car.h"
 
 Car::Car(std::string name,sf::Vector2f pos)
-	:Object(name, pos)
+	:ObjectMove(name, pos)
 {
 }
 //===============================
-void Car::action(const float time)
+void Car::move(const float deltaTime)
 {
-	Object::action(-time);
+	ObjectMove::move(-deltaTime);
 }

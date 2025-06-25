@@ -17,26 +17,9 @@ void Object::draw(sf::RenderWindow& window)
 	window.draw(m_sprite);
 }
 //===============================================
-void Object::moveBackToRoad(bool left)
-{
-	Object::action(-m_time);
-}
+//void Object::moveBackToRoad(bool left)
+//{
+//	m_sprite.move(m_toMove.x * -m_time * KMH, 0);
+//}
 //===============================================
-void Object::setRect(const float rotation)
-{
-	m_sprite.setOrigin(SIZE_CAR.x / 2, SIZE_CAR.y / 2);
-	m_sprite.setRotation(rotation);
-	//m_sprite.setTextureRect(sf::IntRect(SIZE_CAR.x * location.x, SIZE_CAR.y * location.y, SIZE_CAR.x, SIZE_CAR.y));
-}
 //===============================================
-void Object::setSise(const float scale)
-{
-	m_sprite.setScale(scale, scale);
-}
-//===============================================
-void Object::action(const float time)
-{
-	m_time = time;
-	m_sprite.move(m_toMove.x * time * KMH, m_toMove.y * time * KMH);
-	//auto i = m_sprite.getGlobalBounds();
-}

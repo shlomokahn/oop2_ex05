@@ -37,7 +37,7 @@ void Road::inRoad(Object* object)
 	if (global.left < m_roadLines[0].getPositionLine().x || 
 		global.left + global.width > m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x) {
 
-		object->moveBackToRoad(global.left < m_roadLines[0].getPositionLine().x);
+		//object->moveBackToRoad(global.left < m_roadLines[0].getPositionLine().x);
 	}
 }
 

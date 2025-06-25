@@ -1,12 +1,13 @@
 #pragma once
-#include "Object.h"
+#include "ObjectMove.h"
 
-class Car : public Object
+class Car : public ObjectMove
 {
 public:
 	Car(std::string name, sf::Vector2f pos);
 	~Car()= default;
-	virtual void action(const float time) override;
+
+	virtual void move(const float deltaTime) override;
 protected:
 	
 private:
