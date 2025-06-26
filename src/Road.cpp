@@ -1,5 +1,5 @@
 #include "Road.h"
-#include "Object.h"
+#include "ObjectMove.h"
 
 Road::Road() { }
 //==================================
@@ -31,14 +31,14 @@ void Road::promoteRoad()
 	m_roadLines[m_toPromote].setPositionLine(newPosition);
 }
 //==================================
-void Road::inRoad(Object* object)
+void Road::inRoad(ObjectMove* objectMove)
 {
-	sf::FloatRect global = object->getGlobal();
-	if (global.left < m_roadLines[0].getPositionLine().x || 
-		global.left + global.width > m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x) {
-
-		//object->moveBackToRoad(global.left < m_roadLines[0].getPositionLine().x);
-	}
+	sf::FloatRect global = objectMove->getGlobal();
+	if (global.left < m_roadLines[0].getPositionLine().x)
+		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x+30);
+	
+	else if(global.left + global.width > m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x)
+		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x - global.width+20);
 }
 
 

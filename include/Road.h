@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "RoadLine.h"
 
-class Object;
+class ObjectMove;
 
 class Road
 {
@@ -12,7 +12,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void promoteRoad();
 
-	void inRoad(Object* object);
+	void inRoad(ObjectMove* objectMove);
 
 private:
 	std::vector<RoadLine> m_roadLines;

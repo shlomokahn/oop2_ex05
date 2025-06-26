@@ -13,6 +13,11 @@ void ObjectMove::move(const float deltaTime)
 	m_sprite.move(m_toMove.x * deltaTime * KMH, m_toMove.y * deltaTime * KMH);
 }
 //===========================================================
+void ObjectMove::moveBackToRoad(const float moveTo)
+{
+	m_sprite.setPosition({ moveTo, m_sprite.getPosition().y});
+}
+//===========================================================
 void ObjectMove::setRect(const float rotation)
 {
 	m_sprite.setOrigin(SIZE_CAR.x / 2, SIZE_CAR.y / 2);

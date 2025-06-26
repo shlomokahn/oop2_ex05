@@ -9,10 +9,11 @@ public:
 	~ObjectMove() = default;
 
 	virtual void move(const float deltaTime);
-
+	virtual void moveBackToRoad(const float moveTo);
 	void setRect(const float rotation);
 
 protected:
 	sf::Vector2f m_toMove = { 0,0 };
+
 private:
 };

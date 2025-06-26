@@ -17,10 +17,9 @@ void Controller::run(sf::RenderWindow& window)
 	m_clock.restart();
 	while (isOpen() && !Player::isDead())
 	{
-		actionObjects();
+		moveObjects();
 		runBoard();
 		collisionObjects();
-
 	}
 }
 //===============================================
@@ -36,7 +35,7 @@ void Controller::fillObjects(const float time)
 	}
 }
 //================================
-void Controller::actionObjects()
+void Controller::moveObjects()
 {
 	float time = m_clock.restart().asSeconds();
 	fillObjects(time);

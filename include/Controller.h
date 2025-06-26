@@ -12,7 +12,7 @@ class Controller : public GameBoard,  public Command
     private:
         void run(sf::RenderWindow& window);
         void fillObjects(const float time);
-        void actionObjects();
+        void moveObjects();
 		void collisionObjects();
         sf::Clock m_clock;
 };

@@ -17,9 +17,3 @@ void Object::draw(sf::RenderWindow& window)
 	window.draw(m_sprite);
 }
 //===============================================
-//void Object::moveBackToRoad(bool left)
-//{
-//	m_sprite.move(m_toMove.x * -m_time * KMH, 0);
-//}
-//===============================================
-//===============================================
