@@ -17,6 +17,7 @@ void ReadFromFile::ReadLevel()
 	std::string line;
 	while (std::getline(m_file, line)) {
 		m_levelData.push_back(line);
-		if (line == " + ") continue;
+		if (line.size() > 0 && line[0] == '+') 
+			return;
 	}
 }

@@ -5,6 +5,8 @@ Road::Road() { }
 //==================================
 void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int numLanes)
 {
+	m_toPromote = 12;
+	m_roadLines.clear();
 	int left = (sizeWindow.x - roadWidth) / 2;
 	for (int i = 0; i < m_toPromote+1; i++)
 	{
@@ -12,6 +14,7 @@ void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int num
 		int rowLocation = sizeWindow.y - roadWidth / numLanes * i;
 		m_roadLines[i].setPositionLine( sf::Vector2f(left, rowLocation) );
 	}
+	m_lastViewCenter = sizeWindow.y/2 + m_roadLines[0].getRoadSize().y;
 }
 //==================================
 void Road::draw(sf::RenderWindow& window)
@@ -22,13 +25,21 @@ void Road::draw(sf::RenderWindow& window)
 	}
 }
 //===============================
-void Road::promoteRoad()
+void Road::promoteRoad(const float positionViewY)
 {
+	 
 
-	sf::Vector2f newPosition = m_roadLines[m_toPromote].getPositionLine();
-	m_toPromote = (m_toPromote + 1) % m_roadLines.size();
-	newPosition.y -= m_roadLines[m_toPromote].getRoadSize().y;
-	m_roadLines[m_toPromote].setPositionLine(newPosition);
+	float currentCenter = positionViewY;
+
+	while (std::abs(currentCenter - m_lastViewCenter) > m_roadLines[0].getRoadSize().y)
+	{
+		sf::Vector2f newPosition = m_roadLines[m_toPromote].getPositionLine();
+		m_toPromote = (m_toPromote + 1) % m_roadLines.size();
+		newPosition.y -= m_roadLines[m_toPromote].getRoadSize().y;
+		m_roadLines[m_toPromote].setPositionLine(newPosition);
+
+		m_lastViewCenter -= m_roadLines[0].getRoadSize().y;
+	}
 }
 //==================================
 void Road::inRoad(ObjectMove* objectMove)

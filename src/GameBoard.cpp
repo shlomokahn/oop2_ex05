@@ -15,16 +15,9 @@ void GameBoard::runBoard()
 {	
     drawBoard();
 	checkInRoad();
-
-	static float lastViewCenter = m_window->getView().getCenter().y - (m_roadWidth / m_numLanes);
-
-	float currentCenter = m_window->getView().getCenter().y;
-
-	while(std::abs(currentCenter - lastViewCenter) > m_roadWidth / m_numLanes)
-	{
-		m_road.promoteRoad();
-		lastViewCenter -= m_roadWidth / m_numLanes;
-	}
+	
+	m_road.promoteRoad(m_window->getView().getCenter().y);
+		
 }
 //===============================
 void GameBoard::openWindow(sf::RenderWindow& window)

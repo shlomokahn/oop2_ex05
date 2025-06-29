@@ -16,27 +16,35 @@ void Controller::run(sf::RenderWindow& window)
 {
 	openWindow(window);
 
+	if(static bool firstRun = true; firstRun)
+	{
+		m_readFromFile.ReadLevel();
+		firstRun = false;
+	}
 	
 	fillObjects();
 	fillroad();
 	m_clock.restart();
-	while (isOpen() && !Player::isDead())
+	while (isOpen())
 	{
-		moveObjects();
 		runBoard();
+		moveObjects();
 		collisionObjects();
+		if(EndLevel::isEndLevel() || Player::isDead())
+		{
+			m_objects.clear();
+			m_objectsMove.clear();
+			if(EndLevel::isEndLevel())
+				m_readFromFile.ReadLevel();
+
+			return;
+		}
 	}
 }
 //=================================
 bool Controller::fillObjects()
 {
-	m_readFromFile.ReadLevel();
-
-	m_objectsMove.clear();
-	m_objects.clear();
-
-	int i = 0;
-	
+	int i = 0;	
 	std::string info = m_readFromFile.GetLevelData(i);
 	int sizeLine = (info[2] - '0') * 200;
 	m_numLanes = info[4] - '0';
@@ -47,6 +55,7 @@ bool Controller::fillObjects()
 	while (m_readFromFile.GetLevelData(i) != "+")
 	{
 		line = m_readFromFile.GetLevelData(i);
+		i++;
 		if (line.empty()) continue;
 		for(int j = 0; j < line.size(); j++)
 		{
@@ -57,16 +66,15 @@ bool Controller::fillObjects()
 			}
 		}
 
-		i++;
+		
 	}
-	m_objects.push_back(std::make_unique<EndLevel>(-(i+4) * sizeLine));
+	m_objects.push_back(std::make_unique<EndLevel>(-(i+5) * sizeLine));
 	return true;
 }
 //================================
 void Controller::moveObjects()
 {
 	float time = m_clock.restart().asSeconds();
-	//fillObjects(time);
 	for (auto& object : m_objectsMove)
 		object->move(time);
 }
@@ -74,7 +82,12 @@ void Controller::moveObjects()
 void Controller::collisionObjects()
 {
 	for(int i = 0; i < m_objectsMove.size();i++)
+	{
 		for (int j = 0; j < m_objectsMove.size(); j++)
-			if(i != j)
+			if (i != j)
 				m_objectsMove[i]->collision(m_objectsMove[j].get());
+
+		for(int j = 0; j < m_objects.size(); j++)
+			m_objectsMove[i]->collision(m_objects[j].get());
+	}
 }
