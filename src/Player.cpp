@@ -41,7 +41,7 @@ void Player::draw(sf::RenderWindow& window)
 {
 	sf::View view = window.getView(); 
 
-	view.setCenter(getGlobal().getPosition()); // קבע את המרכז למיקום השחקן
+	view.setCenter({ getGlobal().getPosition().x,getGlobal().getPosition().y-200 }); // קבע את המרכז למיקום השחקן
 	window.setView(view); // עדכן את ה-View של החלון
 
 	Object::draw(window); // צייר את האובייקט
