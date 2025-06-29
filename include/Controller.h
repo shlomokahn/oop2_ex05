@@ -12,7 +12,6 @@ class Controller : public GameBoard,  public Command
 		void execute(sf::RenderWindow& window) override { run(window); }
     private:
         void run(sf::RenderWindow& window);
-        void fillObjects(const float time);
         bool fillObjects();
         void moveObjects();
 		void collisionObjects();

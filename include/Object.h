@@ -16,6 +16,7 @@ public:
    virtual void collided(Player* player) {}
    virtual void collided(EnemyCar* enemyCar) {}
    virtual void draw(sf::RenderWindow& window);
+   void setScale(float x, float y);
 
    ~Object() {};  
    sf::FloatRect getGlobal() const { return m_sprite.getGlobalBounds(); }

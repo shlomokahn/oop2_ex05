@@ -5,6 +5,7 @@
 #include <Io.h>
 #include <EnemyCar.h>
 #include <ReadFromFile.h>
+#include "EndLevel.h"
 
 Controller::Controller() 
 	:m_readFromFile("resources/info.txt")
@@ -13,7 +14,7 @@ Controller::Controller()
 //===============================================
 void Controller::run(sf::RenderWindow& window)
 {
-	openWindow(sf::Vector2u(1600,1000));
+	openWindow(window);
 
 	
 	fillObjects();
@@ -30,6 +31,9 @@ void Controller::run(sf::RenderWindow& window)
 bool Controller::fillObjects()
 {
 	m_readFromFile.ReadLevel();
+
+	m_objectsMove.clear();
+	m_objects.clear();
 
 	int i = 0;
 	
@@ -55,6 +59,7 @@ bool Controller::fillObjects()
 
 		i++;
 	}
+	m_objects.push_back(std::make_unique<EndLevel>(-(i+4) * sizeLine));
 	return true;
 }
 //================================

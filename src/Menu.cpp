@@ -20,6 +20,7 @@ void Menu::maneger(sf::RenderWindow& window, const sf::Vector2f& mousePos)
 			if (it != m_commands.end())
 			{
 				it->second->execute(window);
+
 			}
 		}
 	}

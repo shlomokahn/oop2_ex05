@@ -7,6 +7,7 @@
 #include "UserSettings.h"
 
 StartWindow::StartWindow() 
+    :Object("back", { 0,0 })
 {
     createButtons();
 }
@@ -36,6 +37,9 @@ bool StartWindow::handleEvents()
 			{
 				sf::Vector2f mousePos(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
 				menu.maneger(m_window, mousePos);
+                sf::View view = m_window.getView();
+                view.setCenter(view.getSize().x / 2, view.getSize().y / 2);
+                m_window.setView(view);
 			}
         }
     }
@@ -45,23 +49,17 @@ bool StartWindow::handleEvents()
 void StartWindow::draw() 
 {
     m_window.clear();
-    sf::Sprite background(Texture::getInstance().getTexture("back"));
-    sf::Vector2f targetSize((float)m_window.getSize().x, (float)m_window.getSize().y);
-    sf::Vector2u textureSize = background.getTexture()->getSize();
-
-    float scaleX = targetSize.x / textureSize.x;
-    float scaleY = targetSize.y / textureSize.y;
-
-    background.setScale(scaleX, scaleY);
-    m_window.draw(background);
+    Object::draw(m_window);
 	menu.draw(m_window);
     m_window.display();
 }
 //============================================
 bool StartWindow::run() 
 {
-    m_window.create(sf::VideoMode(800, 600), "Game Start Menu");
+    m_window.create(sf::VideoMode(1800, 1400), "Game Start Menu");
     m_window.setFramerateLimit(60);
+
+    setScale(m_window.getSize().x, m_window.getSize().y);
 
     while (m_window.isOpen()) 
     {

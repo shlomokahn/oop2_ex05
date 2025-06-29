@@ -1,8 +1,9 @@
 #pragma once
 #include "Texture.h"
 #include "Menu.h"
+#include "Object.h"
 
-class StartWindow 
+class StartWindow : public Object 
 {
 public:
     StartWindow();
