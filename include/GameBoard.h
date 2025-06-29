@@ -17,7 +17,7 @@ protected:
 	void fillroad();
 	void checkInRoad();
 	std::vector<std::unique_ptr<ObjectMove>> m_objectsMove;
-	int m_roadWidth = 1000;
+	int m_roadWidth = 1200;
 	int m_numLanes = 6;
 	
 private:

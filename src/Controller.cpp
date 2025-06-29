@@ -16,8 +16,8 @@ void Controller::run(sf::RenderWindow& window)
 	openWindow(sf::Vector2u(1600,1000));
 
 	
-	fillroad();
 	fillObjects();
+	fillroad();
 	m_clock.restart();
 	while (isOpen() && !Player::isDead())
 	{
@@ -34,7 +34,9 @@ bool Controller::fillObjects()
 	int i = 0;
 	
 	std::string info = m_readFromFile.GetLevelData(i);
-	int sizeLine = info[2] - '0';
+	int sizeLine = (info[2] - '0') * 200;
+	m_numLanes = info[4] - '0';
+	m_roadWidth = m_numLanes * (SIZE_CAR.x * 1.5);
 	i++;
 	std::string line;
 	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - SIZE_CAR.y - 50)));
@@ -47,7 +49,7 @@ bool Controller::fillObjects()
 			if (line[j] == '*')
 			{
 				int leftRoad = (getWindowSize().x - m_roadWidth) / 2 + 20;
-                m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine * 200)), rand() % 20 + 20));
+                m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20));
 			}
 		}
 

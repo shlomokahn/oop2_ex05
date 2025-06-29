@@ -35,7 +35,7 @@ void Road::inRoad(ObjectMove* objectMove)
 {
 	sf::FloatRect global = objectMove->getGlobal();
 	if (global.left < m_roadLines[0].getPositionLine().x)
-		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x+30);
+		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x+25);
 	
 	else if(global.left + global.width > m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x)
 		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x - global.width+20);
