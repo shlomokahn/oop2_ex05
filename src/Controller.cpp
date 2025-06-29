@@ -1,10 +1,13 @@
 #pragma once
+#include <fstream>
 #include "Controller.h"
 #include "Player.h"
 #include <Io.h>
 #include <EnemyCar.h>
+#include <ReadFromFile.h>
 
 Controller::Controller() 
+	:m_readFromFile("resources/info.txt")
 {
 }
 //===============================================
@@ -14,6 +17,7 @@ void Controller::run(sf::RenderWindow& window)
 
 	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - SIZE_CAR.y - 50)));
 	fillroad();
+	fillObjects();
 	m_clock.restart();
 	while (isOpen() && !Player::isDead())
 	{
@@ -31,14 +35,42 @@ void Controller::fillObjects(const float time)
 	{
 		timer = 0.f;
 		int leftRoad = (getWindowSize().x - m_roadWidth)/2 + 20;
-		m_objectsMove.push_back(std::make_unique<EnemyCar>(leftRoad + (rand() % m_numLanes) * (m_roadWidth/ m_numLanes), rand() % 20 + 20));
+		//m_objectsMove.push_back(std::make_unique<EnemyCar>(leftRoad + (rand() % m_numLanes) * (m_roadWidth/ m_numLanes), rand() % 20 + 20));
 	}
+}
+//=================================
+bool Controller::fillObjects()
+{
+	m_readFromFile.ReadLevel();
+
+	int i = 0;
+	
+	std::string info = m_readFromFile.GetLevelData(i);
+	int sizeLine = info[2] - '0';
+	i++;
+	std::string line;
+	while (m_readFromFile.GetLevelData(i) != "+")
+	{
+		line = m_readFromFile.GetLevelData(i);
+		if (line.empty()) continue;
+		for(int j = 0; j < line.size(); j++)
+		{
+			if (line[j] == '*')
+			{
+				int leftRoad = (getWindowSize().x - m_roadWidth) / 2 + 20;
+                m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine * 200)), rand() % 20 + 20));
+			}
+		}
+
+		i++;
+	}
+	return true;
 }
 //================================
 void Controller::moveObjects()
 {
 	float time = m_clock.restart().asSeconds();
-	fillObjects(time);
+	//fillObjects(time);
 	for (auto& object : m_objectsMove)
 		object->move(time);
 }

@@ -6,7 +6,7 @@
 class EnemyCar : public Enemy, public Car
 {
 public:
-	EnemyCar(const int path,const int speed);
+	EnemyCar(const  sf::Vector2f path,const int speed);
 	~EnemyCar() = default;
 	void collided(Player* player) override;
 

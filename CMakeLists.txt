@@ -37,7 +37,7 @@ add_executable( "oop2_ex05"
 "include/Botton.h" "src/Botton.cpp" 
 "include/Help.h" "src/Help.cpp" 
 "include/Road.h" "src/Road.cpp" 
-"include/RoadLine.h" "src/RoadLine.cpp" "include/ObjectMove.h" "src/ObjectMove.cpp")
+"include/RoadLine.h" "src/RoadLine.cpp" "include/ObjectMove.h" "src/ObjectMove.cpp" "include/ReadFromFile.h" "src/ReadFromFile.cpp")
 
 # Include directories
 target_include_directories(oop2_ex05 PRIVATE include)
