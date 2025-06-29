@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include <Io.h>
 
 bool Player::m_isDead = false;
 
@@ -41,7 +42,7 @@ void Player::draw(sf::RenderWindow& window)
 {
 	sf::View view = window.getView(); 
 
-	view.setCenter({ getGlobal().getPosition().x,getGlobal().getPosition().y-200 }); // קבע את המרכז למיקום השחקן
+	view.setCenter({ getGlobal().getPosition().x + SIZE_CAR.x/2,getGlobal().getPosition().y- SIZE_CAR.y }); // קבע את המרכז למיקום השחקן
 	window.setView(view); // עדכן את ה-View של החלון
 
 	Object::draw(window); // צייר את האובייקט
