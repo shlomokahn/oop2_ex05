@@ -5,6 +5,7 @@
 #include "Help.h"
 #include "Exit.h"
 #include "UserSettings.h"
+#include "SoundManager.h"
 
 StartWindow::StartWindow() 
     :Object("back", { 0,0 })
@@ -56,9 +57,9 @@ void StartWindow::draw()
 //============================================
 bool StartWindow::run() 
 {
-    m_window.create(sf::VideoMode(1800, 1400), "Game Start Menu");
+    m_window.create(sf::VideoMode(1000, 800), "Game Start Menu");
     m_window.setFramerateLimit(60);
-
+    SoundManager::getInstance().playSound("menuBackraund");
     setScale(m_window.getSize().x, m_window.getSize().y);
 
     while (m_window.isOpen()) 

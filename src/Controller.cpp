@@ -6,6 +6,7 @@
 #include <EnemyCar.h>
 #include <ReadFromFile.h>
 #include "EndLevel.h"
+#include "SoundManager.h"
 
 Controller::Controller() 
 	:m_readFromFile("resources/info.txt")
@@ -14,6 +15,8 @@ Controller::Controller()
 //===============================================
 void Controller::run(sf::RenderWindow& window)
 {
+	SoundManager::getInstance().stopAllSounds();
+	SoundManager::getInstance().playSound("gameBackraund");
 	openWindow(window);
 
 	if(static bool firstRun = true; firstRun)

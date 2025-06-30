@@ -1,7 +1,6 @@
 #pragma once
 #include "GameBoard.h"
 
-
 //===============================
 GameBoard::GameBoard()
 {

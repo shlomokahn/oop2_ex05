@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include <Io.h>
+#include <SoundManager.h>
 
 bool Player::m_isDead = false;
 
@@ -36,6 +37,14 @@ void Player::collision(Object* other)
 {
 	if (this->getGlobal().intersects(other->getGlobal()))
 		other->collided(this);
+}
+//===========================================
+void Player::collided(EnemyCar* enemyCar)
+{
+	SoundManager::getInstance().stopAllSounds();
+	SoundManager::getInstance().playSound("accident");
+	_sleep(3000);
+	m_isDead = true;
 }
 //===========================================
 void Player::draw(sf::RenderWindow& window)
