@@ -10,15 +10,21 @@
 StartWindow::StartWindow() 
     :Object("back", { 0,0 })
 {
-    createButtons();
 }
 //===========================================
 void StartWindow::createButtons() 
 {
-	menu.add(m_window, "Play", std::make_unique<Controller>(), { 200, 50 }, { 300, 150 });
-	menu.add(m_window, "Settings", std::make_unique<UserSettings>(), { 200, 50 }, { 300, 250 });
-	menu.add(m_window, "Help", std::make_unique<Help>(), { 200, 50 }, { 300, 350 });
-	menu.add(m_window, "Exit", std::make_unique<Exit>(), { 200, 50 }, { 300, 450 });
+	const float width = m_window.getSize().x;
+    const float height = m_window.getSize().y;
+    const sf::Vector2f sizeBotton(width / 5, height / 16);
+    sf::Vector2f posBotton = { (width - sizeBotton.x) / 2, height / 4 };
+    menu.add("Play", std::make_unique<Controller>(), sizeBotton, posBotton);
+    posBotton.y += sizeBotton.y * 2;
+	menu.add("Settings", std::make_unique<UserSettings>(), sizeBotton, posBotton);
+    posBotton.y += sizeBotton.y * 2;
+    menu.add("Help", std::make_unique<Help>(), sizeBotton, posBotton);
+    posBotton.y += sizeBotton.y * 2;
+    menu.add("Exit", std::make_unique<Exit>(), sizeBotton, posBotton);
 }
 //===========================================
 bool StartWindow::handleEvents() 
@@ -57,8 +63,9 @@ void StartWindow::draw()
 //============================================
 bool StartWindow::run() 
 {
-    m_window.create(sf::VideoMode(1000, 800), "Game Start Menu");
+    m_window.create(sf::VideoMode(1200, 1000), "Game Start Menu");
     m_window.setFramerateLimit(60);
+    createButtons();
     SoundManager::getInstance().playSound("menuBackraund");
     setScale(m_window.getSize().x, m_window.getSize().y);
 

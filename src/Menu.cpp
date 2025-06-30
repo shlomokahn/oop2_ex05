@@ -4,10 +4,10 @@
 
 Menu::Menu() { }
 ////===========================================
-void Menu::add(sf::RenderWindow& window, const std::string& name, std::unique_ptr<Command> command, const sf::Vector2f& size, const sf::Vector2f& position)
+void Menu::add(const std::string& name, std::unique_ptr<Command> command, const sf::Vector2f& size, const sf::Vector2f& position)
 {
 	m_commands[name] = std::move(command);
-	m_buttons.push_back(Botton(window, name, size, position));
+	m_buttons.push_back(Botton(name, size, position));
 }
 //===========================================
 void Menu::maneger(sf::RenderWindow& window, const sf::Vector2f& mousePos)

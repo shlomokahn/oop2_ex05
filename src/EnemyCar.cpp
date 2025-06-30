@@ -16,7 +16,7 @@ void EnemyCar::collision(Object* other)
 //==============================
 void EnemyCar::collided(Player* player)
 {
-	player->collided(this);
+	//player->collided(this);
 }
 //====================================
 void EnemyCar::collided(EnemyCar* enemyCar)

@@ -39,7 +39,7 @@ void Controller::run(sf::RenderWindow& window)
 			m_objectsMove.clear();
 			if(EndLevel::isEndLevel())
 				m_readFromFile.ReadLevel();
-
+			SoundManager::getInstance().playSound("menuBackraund");
 			return;
 		}
 	}

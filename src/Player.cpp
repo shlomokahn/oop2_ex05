@@ -43,7 +43,7 @@ void Player::collided(EnemyCar* enemyCar)
 {
 	SoundManager::getInstance().stopAllSounds();
 	SoundManager::getInstance().playSound("accident");
-	_sleep(3000);
+	_sleep(2000);
 	m_isDead = true;
 }
 //===========================================

@@ -1,7 +1,7 @@
 #pragma once
 #include "Botton.h"
 
-Botton::Botton(sf::RenderWindow& window, const std::string& name, const sf::Vector2f& size, const sf::Vector2f& position)
+Botton::Botton(const std::string& name, const sf::Vector2f& size, const sf::Vector2f& position)
 {
 	m_buttonRect.setSize(size);
 	m_buttonRect.setPosition(position);
