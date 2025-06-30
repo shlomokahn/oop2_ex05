@@ -11,8 +11,7 @@ class Object
 public:  
    Object(std::string name, sf::Vector2f pos);  
  
-   virtual void collision(Object* other) {};  
-   virtual void collided(Object* other) {}; 
+   virtual void collision(Object* other) {};
    virtual void collided(Player* player) {}
    virtual void collided(EnemyCar* enemyCar) {}
    virtual void draw(sf::RenderWindow& window);
