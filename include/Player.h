@@ -20,7 +20,6 @@ private:
 	int m_maxSpeed = 100;
 	int m_accelerat = 50;
 	int m_slow = 200;
-	int m_steere = 6;
 	static bool m_isDead;
 
 };

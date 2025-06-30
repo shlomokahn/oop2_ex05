@@ -15,10 +15,10 @@ void Player::move(const float deltaTime)
 {
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		m_countRect -= deltaTime * m_steere;
+		m_countRect -= deltaTime ;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		m_countRect += deltaTime * m_steere;
+		m_countRect += deltaTime ;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && m_toMove.y < m_maxSpeed) {
 		m_toMove.y += deltaTime * m_accelerat;
