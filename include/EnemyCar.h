@@ -8,7 +8,9 @@ class EnemyCar : public Enemy, public Car
 public:
 	EnemyCar(const  sf::Vector2f path,const int speed);
 	~EnemyCar() = default;
+	void collision(Object* other) override;
 	void collided(Player* player) override;
+	void collided(EnemyCar* enemyCar) override;
 
 private:
 

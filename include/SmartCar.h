@@ -13,9 +13,9 @@ public:
 protected:
 	float m_countRect = 0;
 private:
-
+	void setRect();
 	void straighten(const float time);
-
+	int m_steere = 10;
 	float m_deltaTime = 0;
 
 
