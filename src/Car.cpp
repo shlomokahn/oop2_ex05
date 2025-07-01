@@ -2,10 +2,13 @@
 #include "Car.h"
 #include <Io.h>
 
+
+sf::Vector2f Car::m_sizeCar;
+
 Car::Car(std::string name,sf::Vector2f pos)
 	:ObjectMove(name, pos)
 {
-	setScale(SIZE_CAR.x, SIZE_CAR.y);
+	setScale(m_sizeCar.x, m_sizeCar.y);
 }
 //===============================
 void Car::move(const float deltaTime)

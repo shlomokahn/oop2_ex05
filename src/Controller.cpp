@@ -18,6 +18,7 @@ void Controller::run(sf::RenderWindow& window)
 	SoundManager::getInstance().stopAllSounds();
 	SoundManager::getInstance().playSound("gameBackraund");
 	openWindow(window);
+	Car::setSizeCar(sf::Vector2f(window.getSize().x / 12, window.getSize().y / 5));
 
 	if(static bool firstRun = true; firstRun)
 	{
@@ -51,10 +52,10 @@ bool Controller::fillObjects()
 	std::string info = m_readFromFile.GetLevelData(i);
 	int sizeLine = (info[2] - '0') * 200;
 	m_numLanes = info[4] - '0';
-	m_roadWidth = m_numLanes * (SIZE_CAR.x * 1.5);
+	m_roadWidth = m_numLanes * (Car::getSizeCar().x * 1.5);
 	i++;
 	std::string line;
-	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - SIZE_CAR.y - 50)));
+	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - Car::getSizeCar().y - 50)));
 	while (m_readFromFile.GetLevelData(i) != "+")
 	{
 		line = m_readFromFile.GetLevelData(i);

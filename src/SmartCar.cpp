@@ -25,7 +25,7 @@ void SmartCar::moveBackToRoad(const float moveTo)
 //================================================
 void SmartCar::setRect()
 {
-	m_sprite.setOrigin(SIZE_CAR.x / 2, SIZE_CAR.y / 2);
+	m_sprite.setOrigin(getSizeCar().x / 2, getSizeCar().y / 2);
 	m_sprite.setRotation(m_countRect * m_steere * 1.2);
 }
 //===============================
