@@ -44,12 +44,32 @@ void Road::promoteRoad(const float positionViewY)
 //==================================
 void Road::inRoad(ObjectMove* objectMove)
 {
-	sf::FloatRect global = objectMove->getGlobal();
-	if (global.left < m_roadLines[0].getPositionLine().x)
-		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x+ 30);
-	
-	else if(global.left + global.width > m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x)
-		objectMove->moveBackToRoad(m_roadLines[0].getPositionLine().x + m_roadLines[0].getRoadSize().x - global.width+5);
+    sf::FloatRect global = objectMove->getGlobal();
+    float leftX = global.left;
+    float rightX = global.left + global.width;
+    float y = global.top;
+
+    for (int i = 0; i < m_roadLines.size(); i++)
+    {
+        bool leftIsInRoad = m_roadLines[i].getGlobal().contains({ leftX, y });
+        bool rightIsInRoad = m_roadLines[i].getGlobal().contains({ rightX, y });
+
+        if (!leftIsInRoad && !rightIsInRoad)
+            continue;
+
+        if (!leftIsInRoad) {
+            // החלק השמאלי מחוץ לכביש
+            float newX = m_roadLines[i].getPositionLine().x;
+            objectMove->moveBackToRoad(newX);
+            return;
+        }
+        if (!rightIsInRoad) {
+            // החלק הימני מחוץ לכביש
+            float newX = m_roadLines[i].getPositionLine().x + m_roadLines[0].getRoadSize().x - global.width;
+            objectMove->moveBackToRoad(newX);
+            return;
+        }
+    }
 }
 
 

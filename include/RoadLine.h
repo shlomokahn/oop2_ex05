@@ -10,6 +10,7 @@ public:
 	void setPositionLine(const sf::Vector2f& position);
 	sf::Vector2f getPositionLine() const;
 	sf::Vector2f getRoadSize() const;
+	sf::FloatRect getGlobal() const { return m_roadLine.getGlobalBounds(); }
 
 	void draw(sf::RenderWindow& window) const ;
 

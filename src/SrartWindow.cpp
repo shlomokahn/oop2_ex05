@@ -63,7 +63,7 @@ void StartWindow::draw()
 //============================================
 bool StartWindow::run() 
 {
-    m_window.create(sf::VideoMode(1200, 1000), "Game Start Menu");
+    m_window.create(sf::VideoMode(1400, 1000), "Game Start Menu");
     m_window.setFramerateLimit(60);
     createButtons();
     SoundManager::getInstance().playSound("menuBackraund");

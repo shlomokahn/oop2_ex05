@@ -18,6 +18,7 @@ void SmartCar::move(const float deltaTime)
 //================================================
 void SmartCar::moveBackToRoad(const float moveTo)
 {
+
 	straighten(m_deltaTime);
 	setRect();
 	ObjectMove::moveBackToRoad(moveTo);
@@ -27,6 +28,7 @@ void SmartCar::setRect()
 {
 	m_sprite.setOrigin(getSizeCar().x / 2, getSizeCar().y / 2);
 	m_sprite.setRotation(m_countRect * m_steere * 1.2);
+	m_sprite.setOrigin(0,0);
 }
 //===============================
 void SmartCar::straighten(const float time)
@@ -34,5 +36,5 @@ void SmartCar::straighten(const float time)
 	if (std::abs(m_countRect) < time)
 		m_countRect = 0;
 	else
-		m_countRect += ((m_countRect < 0) ? 1 : -1) * time / 2;
+		m_countRect += ((m_countRect < 0) ? 1 : -1) * time / 1.5;
 }
