@@ -3,7 +3,7 @@
 bool EndLevel::m_isEndLevel = false;
 
 EndLevel::EndLevel(const float location)
-	:Object("back" , {0,location })
+	:Object("levelUp" , {0,location })
 {
 	m_isEndLevel = false;
 }

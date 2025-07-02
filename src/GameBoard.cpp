@@ -58,14 +58,14 @@ void GameBoard::drawObjects()
 
     for(auto& objectMove : m_objectsMove)
         objectMove->draw(*m_window);
-
 }
-//===============================
-void GameBoard::drawBoard()
-{
-    m_window->clear(sf::Color(100, 180, 80));
-	m_road.draw(*m_window);
-    drawObjects();
+void GameBoard::drawBoard()  
+{  
+	m_window->clear();
+	sf::Sprite backgroundSprite(Texture::getInstance().getTexture("backGame"));  
+	m_window->draw(backgroundSprite);  
+	m_road.draw(*m_window);  
+	drawObjects();  
 }
 //===============================
 

@@ -66,13 +66,19 @@ bool Controller::fillObjects()
 			if (line[j] == '*')
 			{
 				int leftRoad = (getWindowSize().x - m_roadWidth) / 2 + 20;
-                m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20));
+				int carType = rand() % 3;
+				if (carType == 1) 
+					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "whiteCar"));
+				else if (carType == 2)
+					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "blueCar"));
+				else
+					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "redCar"));
 			}
 		}
 
 		
 	}
-	m_objects.push_back(std::make_unique<EndLevel>(-(i+5) * sizeLine));
+	m_objects.push_back(std::make_unique<EndLevel>(-(i+9) * sizeLine));
 	return true;
 }
 //================================

@@ -2,8 +2,8 @@
 #include "EnemyCar.h"
 #include "Io.h"
 
-EnemyCar::EnemyCar(const sf::Vector2f path, const int speed)
-	: Car("car", path)
+EnemyCar::EnemyCar(const sf::Vector2f path, const int speed, std::string carType)
+	: Car(carType, path)
 {
 	m_toMove.y = speed;
 }

@@ -1,5 +1,6 @@
 #include "Road.h"
 #include "ObjectMove.h"
+#include "SoundManager.h"
 
 Road::Road() { }
 //==================================
@@ -59,14 +60,17 @@ void Road::inRoad(ObjectMove* objectMove)
 
         if (!leftIsInRoad) {
             // החלק השמאלי מחוץ לכביש
+            
             float newX = m_roadLines[i].getPositionLine().x;
             objectMove->moveBackToRoad(newX+1);
+			SoundManager::getInstance().playSound("drag");
             return;
         }
         if (!rightIsInRoad) {
             // החלק הימני מחוץ לכביש
             float newX = m_roadLines[i].getPositionLine().x + m_roadLines[0].getRoadSize().x - global.width;
             objectMove->moveBackToRoad(newX);
+			SoundManager::getInstance().playSound("drag");
             return;
         }
     }

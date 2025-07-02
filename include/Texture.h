@@ -17,6 +17,6 @@ private:
     Texture& operator=(const Texture&) = delete;
 
     std::unordered_map<std::string, sf::Texture> m_textures;
-    std::vector<std::string> m_textureNames = {"back", "car"};
+    std::vector<std::string> m_textureNames = {"back", "car", "levelUp", "redCar", "blueCar", "whiteCar", "backGame"};
 
 };
