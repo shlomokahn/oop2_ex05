@@ -60,7 +60,7 @@ void Road::inRoad(ObjectMove* objectMove)
         if (!leftIsInRoad) {
             // החלק השמאלי מחוץ לכביש
             float newX = m_roadLines[i].getPositionLine().x;
-            objectMove->moveBackToRoad(newX);
+            objectMove->moveBackToRoad(newX+1);
             return;
         }
         if (!rightIsInRoad) {
