@@ -36,5 +36,5 @@ void SmartCar::straighten(const float time)
 	if (std::abs(m_countRect) < time)
 		m_countRect = 0;
 	else
-		m_countRect += ((m_countRect < 0) ? 1 : -1) * time / 1.5;
+		m_countRect += ((m_countRect < 0) ? 1 : -1) * time / (1+(0.05 * m_steere));
 }

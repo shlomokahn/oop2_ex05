@@ -62,8 +62,8 @@ void GameBoard::drawObjects()
 void GameBoard::drawBoard()  
 {  
 	m_window->clear();
-	sf::Sprite backgroundSprite(Texture::getInstance().getTexture("backGame"));  
-	m_window->draw(backgroundSprite);  
+	//sf::Sprite backgroundSprite(Texture::getInstance().getTexture("backGame"));  
+	//m_window->draw(backgroundSprite);  
 	m_road.draw(*m_window);  
 	drawObjects();  
 }

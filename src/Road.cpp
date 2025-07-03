@@ -16,10 +16,23 @@ void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int num
 		m_roadLines[i].setPositionLine( sf::Vector2f(left, rowLocation) );
 	}
 	m_lastViewCenter = sizeWindow.y/2 + m_roadLines[0].getRoadSize().y;
+
+	sf::Sprite backgroundSprite(Texture::getInstance().getTexture("backGame"));
+    sf::Vector2f sizeBackground = sf::Vector2f(sizeWindow.x + roadWidth, sizeWindow.y);
+	backgroundSprite.setScale({ sizeBackground.x / backgroundSprite.getGlobalBounds().width, sizeBackground.y / backgroundSprite.getGlobalBounds().height});
+	for (int i = 0; i < 3; i++)
+	{
+		m_backGame.push_back(backgroundSprite);
+		m_backGame[i].setPosition(0, i * sizeWindow.y);
+	}
 }
 //==================================
 void Road::draw(sf::RenderWindow& window)
 {
+	for (auto& background : m_backGame)
+	{
+		window.draw(background);
+	}
 	for (auto& roadLine : m_roadLines)
 	{
 		roadLine.draw(window);

@@ -16,6 +16,7 @@ public:
 
 private:
 	std::vector<RoadLine> m_roadLines;
+	std::vector< sf::Sprite> m_backGame;
 	float m_lastViewCenter;
 	int m_toPromote = 12;
 };
