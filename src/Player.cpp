@@ -47,6 +47,14 @@ void Player::collided(EnemyCar* enemyCar)
 	m_isDead = true;
 }
 //===========================================
+void Player::collided(Block* block)
+{
+	SoundManager::getInstance().stopAllSounds();
+	SoundManager::getInstance().playSound("accident");
+	_sleep(2000);
+	m_isDead = true;
+}
+//===========================================
 void Player::draw(sf::RenderWindow& window)
 {
 	sf::View view = window.getView(); 

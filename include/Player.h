@@ -9,6 +9,7 @@ public:
 	void move(const float deltaTime)override;
 	void collision(Object* other) override;
 	void collided(EnemyCar* enemyCar)override;
+	void collided(Block* block) override;
 	void draw(sf::RenderWindow& window)override;
 
 	static bool isDead() { return m_isDead; }

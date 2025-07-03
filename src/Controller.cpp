@@ -7,6 +7,7 @@
 #include <ReadFromFile.h>
 #include "EndLevel.h"
 #include "SoundManager.h"
+#include "Block.h"
 
 Controller::Controller() 
 	:m_readFromFile("resources/info.txt")
@@ -56,6 +57,8 @@ bool Controller::fillObjects()
 	i++;
 	std::string line;
 	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - Car::getSizeCar().y - 50)));
+
+	float leftRoad = (getWindowSize().x - m_roadWidth) / 2;
 	while (m_readFromFile.GetLevelData(i) != "+")
 	{
 		line = m_readFromFile.GetLevelData(i);
@@ -65,7 +68,6 @@ bool Controller::fillObjects()
 		{
 			if (line[j] == '*')
 			{
-				int leftRoad = (getWindowSize().x - m_roadWidth) / 2 + 20;
 				int carType = rand() % 3;
 				if (carType == 1) 
 					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "whiteCar"));
@@ -74,11 +76,15 @@ bool Controller::fillObjects()
 				else
 					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "redCar"));
 			}
+			if(line[j] == '!')
+			{
+				m_objects.push_back(std::make_unique<Block>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))),float(-i * sizeLine))));
+			}
 		}
 
 		
 	}
-	m_objects.push_back(std::make_unique<EndLevel>(-(i+9) * sizeLine));
+	m_objects.push_back(std::make_unique<EndLevel>(sf::Vector2f(leftRoad, -(i + 9) * sizeLine), m_roadWidth));
 	return true;
 }
 //================================

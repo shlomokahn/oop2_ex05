@@ -30,7 +30,7 @@ void SoundManager::loadAllSounds()
         if(path == "resources/drag.mp3")
 			m_sounds[name].setVolume(100);
 		if (path == "resources/gameBackraund.mp3")
-			m_sounds[name].setVolume(10);
+			m_sounds[name].setVolume(5);
         m_buffers[name] = buffer;
         m_sounds[name].setBuffer(m_buffers[name]);
 

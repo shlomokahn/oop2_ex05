@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Car.h"
 #include "Player.h"
+#include "Block.h"
 
 class EnemyCar : public Enemy, public Car
 {
@@ -11,6 +12,7 @@ public:
 	void collision(Object* other) override;
 	void collided(Player* player) override;
 	void collided(EnemyCar* enemyCar) override;
+	void collided(Block* block) override;
 
 private:
 

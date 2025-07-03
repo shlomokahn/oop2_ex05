@@ -23,7 +23,7 @@ void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int num
 	for (int i = 0; i < 3; i++)
 	{
 		m_backGame.push_back(backgroundSprite);
-		m_backGame[i].setPosition(0, i * sizeWindow.y);
+		m_backGame[i].setPosition(0, -i * sizeWindow.y);
 	}
 }
 //==================================

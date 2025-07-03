@@ -16,10 +16,14 @@ void EnemyCar::collision(Object* other)
 //==============================
 void EnemyCar::collided(Player* player)
 {
-	//player->collided(this);
 }
 //====================================
 void EnemyCar::collided(EnemyCar* enemyCar)
 {
 	m_toMove.y += ((getGlobal().top > enemyCar->getGlobal().top) ? -1 : 1);
+}
+//====================================
+void EnemyCar::collided(Block* block)
+{
+	m_toMove.y = 0;
 }
