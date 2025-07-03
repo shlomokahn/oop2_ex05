@@ -27,7 +27,10 @@ void SoundManager::loadAllSounds()
             std::cerr << "Failed to load sound: " << path << std::endl;
             continue;
         }
-
+        if(path == "resources/drag.mp3")
+			m_sounds[name].setVolume(100);
+		if (path == "resources/gameBackraund.mp3")
+			m_sounds[name].setVolume(10);
         m_buffers[name] = buffer;
         m_sounds[name].setBuffer(m_buffers[name]);
 
@@ -38,11 +41,13 @@ void SoundManager::loadAllSounds()
     }
 }
 //================================================
-void SoundManager::playSound(const std::string& name) 
+void SoundManager::playSound(const std::string& name)
 {
     auto it = m_sounds.find(name);
     if (it != m_sounds.end()) {
-        it->second.play();
+        if (it->second.getStatus() != sf::Sound::Playing) {
+            it->second.play();
+        }
     }
 }
 //================================================

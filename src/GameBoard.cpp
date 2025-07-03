@@ -48,7 +48,6 @@ void GameBoard::checkInRoad()
 {
 	for (auto& objectMove : m_objectsMove)
 		m_road.inRoad(objectMove.get());
-
 }
 //===============================
 void GameBoard::drawObjects()
