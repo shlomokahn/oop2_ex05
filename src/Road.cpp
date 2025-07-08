@@ -20,11 +20,12 @@ void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int num
 	sf::Sprite backgroundSprite(Texture::getInstance().getTexture("backGame"));
     sf::Vector2f sizeBackground = sf::Vector2f(sizeWindow.x + roadWidth, sizeWindow.y);
 	backgroundSprite.setScale({ sizeBackground.x / backgroundSprite.getGlobalBounds().width, sizeBackground.y / backgroundSprite.getGlobalBounds().height});
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < m_backGametoPromote+1; i++)
 	{
+		backgroundSprite.setPosition(-roadWidth/2, -i * float(sizeWindow.y));
 		m_backGame.push_back(backgroundSprite);
-		m_backGame[i].setPosition(0, -i * sizeWindow.y);
 	}
+	m_backGamelastViewCenter = 0;
 }
 //==================================
 void Road::draw(sf::RenderWindow& window)
@@ -41,11 +42,8 @@ void Road::draw(sf::RenderWindow& window)
 //===============================
 void Road::promoteRoad(const float positionViewY)
 {
-	 
 
-	float currentCenter = positionViewY;
-
-	while (std::abs(currentCenter - m_lastViewCenter) > m_roadLines[0].getRoadSize().y)
+	while (std::abs(positionViewY - m_lastViewCenter) > m_roadLines[0].getRoadSize().y)
 	{
 		sf::Vector2f newPosition = m_roadLines[m_toPromote].getPositionLine();
 		m_toPromote = (m_toPromote + 1) % m_roadLines.size();
@@ -54,6 +52,16 @@ void Road::promoteRoad(const float positionViewY)
 
 		m_lastViewCenter -= m_roadLines[0].getRoadSize().y;
 	}
+	if(std::abs(positionViewY - m_backGamelastViewCenter) > m_backGame[0].getGlobalBounds().height)
+	{
+		sf::Vector2f newPosition = m_backGame[m_backGametoPromote].getPosition();
+		m_backGametoPromote = (m_backGametoPromote + 1) % m_backGame.size();
+		newPosition.y -= m_backGame[0].getGlobalBounds().height;
+		m_backGame[m_backGametoPromote].setPosition(newPosition);
+		m_backGamelastViewCenter -= m_backGame[0].getGlobalBounds().height;
+	}
+
+
 }
 //==================================
 void Road::inRoad(ObjectMove* objectMove)

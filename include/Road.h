@@ -19,4 +19,6 @@ private:
 	std::vector< sf::Sprite> m_backGame;
 	float m_lastViewCenter;
 	int m_toPromote = 12;
+	int m_backGametoPromote = 2;
+	float m_backGamelastViewCenter;
 };
