@@ -22,6 +22,7 @@ protected:
 	int m_numLanes = 6;
 	int m_Level = 0;
 private:
+	void Pause(sf::Event event);
 	void drawObjects();
 	void drawBoard();
 	void drawData();

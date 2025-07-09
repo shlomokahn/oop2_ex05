@@ -35,6 +35,7 @@ void Controller::run(sf::RenderWindow& window)
 		runBoard();
 		moveObjects();
 		collisionObjects();
+
 		if(EndLevel::isEndLevel() || Player::isDead())
 		{
 			m_objects.clear();
