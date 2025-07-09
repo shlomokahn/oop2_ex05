@@ -8,6 +8,8 @@ void Road::gameStart(sf::Vector2u sizeWindow, const int roadWidth, const int num
 {
 	m_toPromote = 12;
 	m_roadLines.clear();
+	m_backGametoPromote = 2;
+	m_backGame.clear();
 	int left = (sizeWindow.x - roadWidth) / 2;
 	for (int i = 0; i < m_toPromote+1; i++)
 	{
@@ -52,7 +54,7 @@ void Road::promoteRoad(const float positionViewY)
 
 		m_lastViewCenter -= m_roadLines[0].getRoadSize().y;
 	}
-	if(std::abs(positionViewY - m_backGamelastViewCenter) > m_backGame[0].getGlobalBounds().height)
+	while(std::abs(positionViewY - m_backGamelastViewCenter) > m_backGame[0].getGlobalBounds().height)
 	{
 		sf::Vector2f newPosition = m_backGame[m_backGametoPromote].getPosition();
 		m_backGametoPromote = (m_backGametoPromote + 1) % m_backGame.size();
