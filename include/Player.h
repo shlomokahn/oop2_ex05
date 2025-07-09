@@ -1,7 +1,7 @@
 #pragma once
 #include "SmartCar.h"
 class EnemeCar;
-
+class Explotion;
 class Player : public SmartCar 
 {
 public:
@@ -22,5 +22,8 @@ private:
 	int m_accelerat = 50;
 	int m_slow = 200;
 	static bool m_isDead;
+	Explotion* m_explotion = nullptr;
+
+
 
 };

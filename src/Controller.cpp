@@ -56,7 +56,7 @@ bool Controller::fillObjects()
 	m_roadWidth = m_numLanes * (Car::getSizeCar().x * 1.5);
 	i++;
 	std::string line;
-	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - Car::getSizeCar().y - 50)));
+	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - Car::getSizeCar().y*2)));
 
 	float leftRoad = (getWindowSize().x - m_roadWidth) / 2;
 	while (m_readFromFile.GetLevelData(i) != "+")

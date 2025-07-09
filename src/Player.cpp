@@ -2,6 +2,7 @@
 #include "Player.h"
 #include <Io.h>
 #include <SoundManager.h>
+#include "Explotion.h"
 
 bool Player::m_isDead = false;
 
@@ -14,7 +15,15 @@ Player::Player(sf::Vector2f pos)
 //===========================================
 void Player::move(const float deltaTime)
 {
-	
+	if (m_explotion != nullptr) {
+		m_explotion->move(deltaTime);
+		if (m_explotion->isEnd()) {
+			delete m_explotion;
+			m_explotion = nullptr;
+			m_isDead = true;
+			return;
+		}
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		m_countRect -= deltaTime ;
 	}
@@ -41,26 +50,28 @@ void Player::collision(Object* other)
 //===========================================
 void Player::collided(EnemyCar* enemyCar)
 {
-	SoundManager::getInstance().stopAllSounds();
-	SoundManager::getInstance().playSound("accident");
-	_sleep(2000);
-	m_isDead = true;
+	if (m_explotion == nullptr && !m_isDead)
+		m_explotion = new Explotion(getGlobal().getPosition());
+	m_toMove.y *= 0.2f;
 }
 //===========================================
 void Player::collided(Block* block)
 {
-	SoundManager::getInstance().stopAllSounds();
-	SoundManager::getInstance().playSound("accident");
-	_sleep(2000);
-	m_isDead = true;
+	if (m_explotion == nullptr && !m_isDead)
+		m_explotion = new Explotion(getGlobal().getPosition());
+	m_toMove.y *= 0.2f;
 }
 //===========================================
 void Player::draw(sf::RenderWindow& window)
 {
 	sf::View view = window.getView(); 
 
-	view.setCenter({ getGlobal().getPosition().x + getSizeCar().x/2,getGlobal().getPosition().y- getSizeCar().y }); // קבע את המרכז למיקום השחקן
+	view.setCenter({ getGlobal().getPosition().x + getSizeCar().x/2,getGlobal().getPosition().y- window.getSize().y/2 + float(getSizeCar().y * 1.3)}); // קבע את המרכז למיקום השחקן
 	window.setView(view); // עדכן את ה-View של החלון
 
 	Object::draw(window); // צייר את האובייקט
+	if (m_explotion != nullptr) {
+		m_explotion->draw(window);
+	}
 }
+//===========================================
