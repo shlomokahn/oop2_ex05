@@ -13,11 +13,17 @@ ReadFromFile::ReadFromFile(const std::string name)
 //============================
 void ReadFromFile::ReadLevel()
 {
+	if (m_file.eof()) 
+	{
+		m_file.clear();          
+		m_file.seekg(0);       
+	}
+
 	m_levelData.clear();
 	std::string line;
 	while (std::getline(m_file, line)) {
 		m_levelData.push_back(line);
-		if (line.size() > 0 && line[0] == '+') 
+		if (line.size() > 0 && line[0] == '+')
 			return;
 	}
 }
