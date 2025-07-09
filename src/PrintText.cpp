@@ -42,3 +42,12 @@ void PrintText::drawText(sf::RenderWindow& window, const std::string& str, unsig
         rect.getPosition().y + rect.getSize().y / 2.f);
     window.draw(m_text);
 }
+
+void PrintText::drawText(sf::RenderWindow& window, const std::string& str, unsigned int size, sf::Color color, const sf::CircleShape circle)
+{
+	drawText(window, str, size, color, sf::Vector2f(0, 0));
+	auto bounds = m_text.getLocalBounds();
+	m_text.setPosition(circle.getPosition().x + circle.getRadius(),
+		circle.getPosition().y + circle.getRadius() * 0.8);
+	window.draw(m_text);
+}

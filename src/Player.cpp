@@ -3,14 +3,18 @@
 #include <Io.h>
 #include <SoundManager.h>
 #include "Explotion.h"
+#include "PrintText.h"
 
 bool Player::m_isDead = false;
+float Player::m_score = 0;
 
 Player::Player(sf::Vector2f pos)
 	:SmartCar("car", pos)
 {
 	m_isDead = false;
 	m_toMove.y = 30;
+	m_circle.setRadius(getSizeCar().x/1.5);
+	m_circle.setFillColor(sf::Color::White);
 }
 //===========================================
 void Player::move(const float deltaTime)
@@ -39,6 +43,7 @@ void Player::move(const float deltaTime)
 	else if(m_toMove.y > m_minSpeed){
 		m_toMove.y -= deltaTime * 50;
 	}
+	m_score += ((deltaTime * m_toMove.y) / 2000) * m_toMove.y;
 	SmartCar::move(deltaTime);
 }
 //===========================================
@@ -68,10 +73,21 @@ void Player::draw(sf::RenderWindow& window)
 
 	view.setCenter({ getGlobal().getPosition().x + getSizeCar().x/2,getGlobal().getPosition().y- window.getSize().y/2 + float(getSizeCar().y * 1.3)}); // קבע את המרכז למיקום השחקן
 	window.setView(view); // עדכן את ה-View של החלון
-
-	Object::draw(window); // צייר את האובייקט
+	printData(window);
+	ObjectMove::draw(window); // צייר את האובייקט
 	if (m_explotion != nullptr) {
 		m_explotion->draw(window);
 	}
+}
+//===========================================
+void Player::printData(sf::RenderWindow &window)
+{
+	m_circle.setPosition(m_sprite.getPosition().x - window.getSize().x / 2 + getSizeCar().x, m_sprite.getPosition().y);
+	window.draw(m_circle);
+	PrintText::getInstance().drawText(window, std::to_string(int(m_toMove.y)) + "KMH", m_circle.getRadius()/2, (m_toMove.y > 80) ? sf::Color::Red : sf::Color::Black, m_circle);
+
+	m_circle.setPosition(m_sprite.getPosition().x + window.getSize().x / 2 - getSizeCar().x, m_sprite.getPosition().y);
+	window.draw(m_circle);
+	PrintText::getInstance().drawText(window, std::to_string(int(m_score)) + "$", m_circle.getRadius() / 2, (m_toMove.y > 50) ? sf::Color::Green : sf::Color::Black, m_circle);
 }
 //===========================================

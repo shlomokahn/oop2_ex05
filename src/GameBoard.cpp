@@ -1,5 +1,6 @@
 #pragma once
 #include "GameBoard.h"
+#include <PrintText.h>
 
 //===============================
 GameBoard::GameBoard()
@@ -62,7 +63,16 @@ void GameBoard::drawBoard()
 {  
 	m_window->clear(); 
 	m_road.draw(*m_window);  
-	drawObjects();  
+	drawObjects(); 
+	drawData();
+}
+//===============================
+void GameBoard::drawData()
+{
+	sf::View view = m_window->getView();
+	sf::Vector2f position(view.getCenter().x, view.getCenter().y - view.getSize().y * 0.45);
+
+	PrintText::getInstance().drawText(*m_window, "Level: " + std::to_string(m_Level), m_window->getSize().y * 0.06, sf::Color::Green, position);
 }
 //===============================
 

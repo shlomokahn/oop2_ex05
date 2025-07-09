@@ -51,6 +51,7 @@ bool Controller::fillObjects()
 {
 	int i = 0;	
 	std::string info = m_readFromFile.GetLevelData(i);
+	m_Level = info[0] - '0';
 	int sizeLine = (info[2] - '0') * 200;
 	m_numLanes = info[4] - '0';
 	m_roadWidth = m_numLanes * (Car::getSizeCar().x * 1.5);

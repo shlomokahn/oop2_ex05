@@ -9,6 +9,7 @@ public:
 
     void drawText(sf::RenderWindow& window, const std::string& str, unsigned int size, sf::Color color, sf::Vector2f position);
     void drawText(sf::RenderWindow& window, const std::string& str, unsigned int size, sf::Color color, const sf::RectangleShape& rect);
+    void drawText(sf::RenderWindow& window, const std::string& str, unsigned int size, sf::Color color, const 	sf::CircleShape circle);
 
 private:
     PrintText();

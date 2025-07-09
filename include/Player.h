@@ -19,11 +19,13 @@ public:
 private:
 	int m_minSpeed = 30;
 	int m_maxSpeed = 100;
-	int m_accelerat = 50;
-	int m_slow = 200;
+	int m_accelerat = 20;
+	int m_slow = 100;
+	static float m_score;
 	static bool m_isDead;
 	Explotion* m_explotion = nullptr;
-
+	sf::CircleShape m_circle;
+	void printData(sf::RenderWindow& window);
 
 
 };

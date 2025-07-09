@@ -20,10 +20,11 @@ protected:
 	std::vector<std::unique_ptr<Object>> m_objects;
 	int m_roadWidth = 1200;
 	int m_numLanes = 6;
-	
+	int m_Level = 0;
 private:
 	void drawObjects();
 	void drawBoard();
+	void drawData();
 	Road m_road;
 	sf::RenderWindow* m_window;
 };

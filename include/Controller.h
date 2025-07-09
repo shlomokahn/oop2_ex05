@@ -17,5 +17,4 @@ class Controller : public GameBoard,  public Command
 		void collisionObjects();
         sf::Clock m_clock;
         ReadFromFile m_readFromFile;
-		int m_Level = 0;
 };
