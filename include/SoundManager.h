@@ -24,6 +24,6 @@ private:
     std::map<std::string, sf::SoundBuffer> m_buffers;
     std::map<std::string, sf::Sound> m_sounds;
 
-    std::vector<std::string> m_soundNames = {"menuBackraund", "gameBackraund", "accident", "drag"};
+    std::vector<std::string> m_soundNames = {"menuBackraund", "gameBackraund", "accident", "drag", "LevelUp"};
 	std::vector<std::string> m_loopingSounds = { "menuBackraund", "gameBackraund" };
 };

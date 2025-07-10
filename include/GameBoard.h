@@ -12,7 +12,7 @@ public:
 protected:
 	void runBoard();
 	void openWindow(sf::RenderWindow& window);
-	bool isOpen();
+	bool isOpen(sf::Clock& m_clock);
 	sf::Vector2u getWindowSize() const {return m_window->getSize(); }
 	void fillroad();
 	void checkInRoad();
@@ -22,7 +22,7 @@ protected:
 	int m_numLanes = 6;
 	int m_Level = 0;
 private:
-	void Pause(sf::Event event);
+	void Pause();
 	void drawObjects();
 	void drawBoard();
 	void drawData();

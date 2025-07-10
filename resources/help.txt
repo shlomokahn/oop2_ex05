@@ -10,6 +10,6 @@ Controls:
 - Down Arrow: Brake
 - Left Arrow: Move Left
 - Right Arrow: Move Right
-- ESC: Pause Game
+- Space: Pause Game
 
 Good luck and have fun! 
