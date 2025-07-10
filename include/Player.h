@@ -1,11 +1,12 @@
 #pragma once
 #include "SmartCar.h"
+
 class EnemeCar;
 class Explotion;
 class Player : public SmartCar 
 {
 public:
-	Player(sf::Vector2f pos);
+	Player(sf::Vector2f pos, std::istringstream& iss);
 	void move(const float deltaTime)override;
 	void collision(Object* other) override;
 	void collided(EnemyCar* enemyCar)override;

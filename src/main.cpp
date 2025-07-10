@@ -4,8 +4,7 @@
 
 int main() {
     StartWindow startWindow;
-	if (!startWindow.run())
-		return 0; 
+    startWindow.run();
 
 
     return 0;

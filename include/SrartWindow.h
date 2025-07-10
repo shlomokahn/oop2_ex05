@@ -8,7 +8,7 @@ class StartWindow : public Object
 public:
     StartWindow();
     ~StartWindow() = default;
-    bool run();
+    void run();
 
 private:
     void createButtons();
