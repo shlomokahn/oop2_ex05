@@ -14,4 +14,5 @@ void EndLevel::collided(Player* player)
 {
 	m_isEndLevel = true;
 	SoundManager::getInstance().stopAllSounds();
+	SoundManager::getInstance().playSound("LevelUp");
 }

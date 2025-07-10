@@ -19,7 +19,7 @@ void GameBoard::openWindow(sf::RenderWindow& window)
 	m_window = &window;
 }
 //===============================
-bool GameBoard::isOpen()
+bool GameBoard::isOpen(sf::Clock& m_clock)
 {
 	sf::Event event;
 	while (m_window->pollEvent(event))
@@ -31,8 +31,8 @@ bool GameBoard::isOpen()
 		}
 		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
 		{
-			Pause(event);
-			return true;
+			Pause();
+			m_clock.restart();
 		}
 	}
 	m_window->display();
@@ -50,7 +50,7 @@ void GameBoard::checkInRoad()
 		m_road.inRoad(objectMove.get());
 }
 //===============================
-void GameBoard::Pause(sf::Event event)
+void GameBoard::Pause()
 {
 	bool waitingForResume = true;
 	while (waitingForResume)

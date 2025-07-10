@@ -30,7 +30,7 @@ void Controller::run(sf::RenderWindow& window)
 	fillObjects();
 	fillroad();
 	m_clock.restart();
-	while (isOpen())
+	while (isOpen(m_clock))
 	{
 		runBoard();
 		moveObjects();
@@ -109,3 +109,4 @@ void Controller::collisionObjects()
 			m_objectsMove[i]->collision(m_objects[j].get());
 	}
 }
+//================================
