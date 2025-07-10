@@ -1,4 +1,6 @@
 #pragma once
+#include <sstream>
+
 #include "Player.h"
 #include <Io.h>
 #include <SoundManager.h>
@@ -8,11 +10,13 @@
 bool Player::m_isDead = false;
 float Player::m_score = 0;
 
-Player::Player(sf::Vector2f pos)
+Player::Player(sf::Vector2f pos, std::istringstream& iss)
 	:SmartCar("car", pos)
 {
+	iss >> m_minSpeed >> m_maxSpeed >> m_accelerat >> m_slow;
+
 	m_isDead = false;
-	m_toMove.y = 30;
+	m_toMove.y = m_minSpeed;
 	m_circle.setRadius(getSizeCar().x/1.5);
 	m_circle.setFillColor(sf::Color::White);
 }
@@ -41,7 +45,7 @@ void Player::move(const float deltaTime)
 		m_toMove.y-= deltaTime * m_slow;
 	}
 	else if(m_toMove.y > m_minSpeed){
-		m_toMove.y -= deltaTime * 50;
+		m_toMove.y -= deltaTime * m_slow/3;
 	}
 	m_score += ((deltaTime * m_toMove.y) / 2000) * m_toMove.y;
 	SmartCar::move(deltaTime);

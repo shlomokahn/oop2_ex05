@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <sstream>
 #include "Controller.h"
 #include "Player.h"
 #include <Io.h>
@@ -8,6 +9,7 @@
 #include "EndLevel.h"
 #include "SoundManager.h"
 #include "Block.h"
+
 
 Controller::Controller() 
 	:m_readFromFile("resources/info.txt")
@@ -52,14 +54,17 @@ bool Controller::fillObjects()
 {
 	int i = 0;	
 	std::string info = m_readFromFile.GetLevelData(i);
-	m_Level = info[0] - '0';
-	int sizeLine = (info[2] - '0') * 200;
-	m_numLanes = info[4] - '0';
+	std::istringstream iss(info);
+	int sizeLine = 0;
+	iss >> m_Level >> sizeLine >> m_numLanes;
+	sizeLine *= 200;
+	
 	m_roadWidth = m_numLanes * (Car::getSizeCar().x * 1.5);
+
+	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - Car::getSizeCar().y*2), iss));
+
 	i++;
 	std::string line;
-	m_objectsMove.push_back(std::make_unique<Player>(sf::Vector2f(getWindowSize().x / 2, getWindowSize().y - Car::getSizeCar().y*2)));
-
 	float leftRoad = (getWindowSize().x - m_roadWidth) / 2;
 	while (m_readFromFile.GetLevelData(i) != "+")
 	{
