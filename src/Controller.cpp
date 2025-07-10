@@ -91,7 +91,7 @@ bool Controller::fillObjects()
 
 		
 	}
-	m_objects.push_back(std::make_unique<EndLevel>(sf::Vector2f(leftRoad, -(i + 9) * sizeLine), m_roadWidth));
+	m_objects.push_back(std::make_unique<EndLevel>(sf::Vector2f(leftRoad, -(i+5) * sizeLine), m_roadWidth));
 	return true;
 }
 //================================
