@@ -55,8 +55,8 @@ bool Controller::fillObjects()
 	int i = 0;	
 	std::string info = m_readFromFile.GetLevelData(i);
 	std::istringstream iss(info);
-	int sizeLine = 0;
-	iss >> m_Level >> sizeLine >> m_numLanes;
+	int sizeLine , minSpeedEnemy, maxSpeedEnemy;
+	iss >> m_Level >> sizeLine >> m_numLanes >> minSpeedEnemy >> maxSpeedEnemy;
 	sizeLine *= 200;
 	
 	m_roadWidth = m_numLanes * (Car::getSizeCar().x * 1.5);
@@ -77,11 +77,11 @@ bool Controller::fillObjects()
 			{
 				int carType = rand() % 3;
 				if (carType == 1) 
-					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "whiteCar"));
-				else if (carType == 2)
-					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "blueCar"));
+					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % (maxSpeedEnemy- minSpeedEnemy) + minSpeedEnemy, "whiteCar"));
+				else if (carType == 2)																																   
+					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % (maxSpeedEnemy- minSpeedEnemy) + minSpeedEnemy, "blueCar"));
 				else
-					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % 20 + 20, "redCar"));
+					m_objectsMove.push_back(std::make_unique<EnemyCar>(sf::Vector2f(float(leftRoad + (j * (m_roadWidth / m_numLanes))), float(-i * sizeLine)), rand() % (maxSpeedEnemy- minSpeedEnemy) + minSpeedEnemy, "redCar"));
 			}
 			if(line[j] == '!')
 			{
