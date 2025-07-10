@@ -61,7 +61,7 @@ void StartWindow::draw()
     m_window.display();
 }
 //============================================
-bool StartWindow::run() 
+void StartWindow::run() 
 {
     m_window.create(sf::VideoMode(1400, 1000), "Game Start Menu");
     m_window.setFramerateLimit(60);
@@ -72,8 +72,7 @@ bool StartWindow::run()
     while (m_window.isOpen()) 
     {
 		if (!handleEvents())
-			return false;
+			return;
         draw();
     }
-	return true;
 }
